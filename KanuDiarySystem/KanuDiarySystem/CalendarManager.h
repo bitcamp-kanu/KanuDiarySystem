@@ -11,7 +11,7 @@ private:
 	int m_nMonth;
 	int m_nDay;
 	eWeek m_eWeek;
-	string m_strDiary; //"YYYYMMDDHHMMSS"
+	//string m_strDiary; //"YYYYMMDDHHMMSS"
 };
 class CalendarManager
 {

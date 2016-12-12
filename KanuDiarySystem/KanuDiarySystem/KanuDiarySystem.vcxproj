@@ -75,11 +75,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CalendarManager.h" />
+    <ClInclude Include="CodeList.h" />
+    <ClInclude Include="Diary.h" />
+    <ClInclude Include="Schedule.h" />
     <ClInclude Include="Util.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CalendarManager.cpp" />
+    <ClCompile Include="CodeList.cpp" />
+    <ClCompile Include="Diary.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Schedule.cpp" />
     <ClCompile Include="Util.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
