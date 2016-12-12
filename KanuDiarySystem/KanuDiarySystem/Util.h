@@ -81,10 +81,10 @@ class Display
 private:
 	static char m_cKey;
 public:
-	void static DrawRect(Point& pt , Point& size);
+	void static DrawRect(Point& pt , Point& pt2);
 	//가로 라인은 그린다.
 	void static DrawXLine(Point& pt1 , int len);
-	//세로 라인을 그린다.
+	//세로 라인을 그린다.`	
 	void static DrawYLine(Point& pt1 , int len);
 
 };

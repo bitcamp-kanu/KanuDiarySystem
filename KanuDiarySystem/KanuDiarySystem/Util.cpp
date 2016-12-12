@@ -106,13 +106,34 @@ void Display::DrawYLine(Point& pt1 , int len)
 {
 	for(int i = 0 ; i <len ; i++ )
 	{		
-		CUtil::Gotoxy(pt1.GetX() , pt1.GetY() + 1);
+		CUtil::Gotoxy(pt1.GetX() , pt1.GetY() + i);
+		printf("%c",Display::m_cKey);
 	}
 }
 
-void Display::DrawRect(Point& pt ,Point& size)
+void Display::DrawRect(Point& pt ,Point& pt2)
 {
+	
+	for(int i = 0 ; i <pt2.GetX() ; i++ )
+	{	
+		int j=pt2.GetY();
+		CUtil::Gotoxy(pt.GetX() + i , pt.GetY());
+		printf("%c",Display::m_cKey);
+		CUtil::Gotoxy(pt.GetX() + i+1 , pt.GetY()+j);
+		printf("%c",Display::m_cKey);
+	}
+	for(int i = 0 ; i < pt2.GetY() ; i++ )
+	{	
+		int j=pt2.GetX();	
+		CUtil::Gotoxy(pt.GetX()  , pt.GetY()+i);
+		printf("%c",Display::m_cKey);
+		CUtil::Gotoxy(pt.GetX() + j, pt.GetY()+i+1);
+		printf("%c",Display::m_cKey);
+	}
 
+		
+	
+	
 }
 
 
