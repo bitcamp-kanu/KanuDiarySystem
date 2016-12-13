@@ -81,6 +81,7 @@
     <ClInclude Include="KNNode.h" />
     <ClInclude Include="Layout.h" />
     <ClInclude Include="Schedule.h" />
+    <ClInclude Include="turboc.h" />
     <ClInclude Include="Util.h" />
   </ItemGroup>
   <ItemGroup>
@@ -90,21 +91,18 @@
     <ClCompile Include="KNList.cpp" />
     <ClCompile Include="KNNode.cpp" />
     <ClCompile Include="Layout.cpp" />
-    <ClCompile Include="main_uihyun.cpp" />
-    <ClCompile Include="main_jungmin.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="main_hansang.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="main_isol.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="main_uihyun.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="main_jungmin.cpp" />
-=======
->>>>>>> 7d550501cc7c25fbe3d290766b6b7278f64c66f8
     <ClCompile Include="Schedule.cpp" />
+    <ClCompile Include="turboc.cpp" />
     <ClCompile Include="Util.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
