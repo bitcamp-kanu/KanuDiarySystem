@@ -77,6 +77,8 @@
     <ClInclude Include="CalendarManager.h" />
     <ClInclude Include="CodeList.h" />
     <ClInclude Include="Diary.h" />
+    <ClInclude Include="KNList.h" />
+    <ClInclude Include="KNNode.h" />
     <ClInclude Include="Layout.h" />
     <ClInclude Include="Schedule.h" />
     <ClInclude Include="Util.h" />
@@ -85,8 +87,16 @@
     <ClCompile Include="CalendarManager.cpp" />
     <ClCompile Include="CodeList.cpp" />
     <ClCompile Include="Diary.cpp" />
+    <ClCompile Include="KNList.cpp" />
+    <ClCompile Include="KNNode.cpp" />
     <ClCompile Include="Layout.cpp" />
     <ClCompile Include="main.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="main_hansang.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="main_isol.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="main_jungmin.cpp" />

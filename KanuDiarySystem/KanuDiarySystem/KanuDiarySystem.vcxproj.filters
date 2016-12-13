@@ -45,6 +45,12 @@
     <ClInclude Include="Util.h">
       <Filter>Base</Filter>
     </ClInclude>
+    <ClInclude Include="KNList.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="KNNode.h">
+      <Filter>Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -69,6 +75,18 @@
       <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="main_jungmin.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="KNList.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="KNNode.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="main_hansang.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="main_isol.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
