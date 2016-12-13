@@ -11,7 +11,6 @@ int main()
 
 
 	Rect ret(0,0,100,40);
-
 	Rect ret1(0,0,71,3);
 	Rect ret2(70,0,30,3);
 	//Rect ret(0,0,50,50);
