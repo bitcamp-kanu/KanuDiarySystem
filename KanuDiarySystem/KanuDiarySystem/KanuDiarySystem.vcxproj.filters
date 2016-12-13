@@ -47,9 +47,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Diary.cpp">
       <Filter>Item</Filter>
     </ClCompile>
@@ -69,6 +66,9 @@
       <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="main_jungmin.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="main_uihyun.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

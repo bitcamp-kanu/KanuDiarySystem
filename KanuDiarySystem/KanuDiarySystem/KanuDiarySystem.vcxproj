@@ -86,10 +86,10 @@
     <ClCompile Include="CodeList.cpp" />
     <ClCompile Include="Diary.cpp" />
     <ClCompile Include="Layout.cpp" />
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="main_uihyun.cpp" />
+    <ClCompile Include="main_jungmin.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="main_jungmin.cpp" />
     <ClCompile Include="Schedule.cpp" />
     <ClCompile Include="Util.cpp" />
   </ItemGroup>
