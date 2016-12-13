@@ -55,6 +55,52 @@ public:
 	{
 		m_nY += y;
 	}
+
+	Point& operator+(Point& pt)
+	{
+		m_nX  = m_nX + pt.GetX();
+		m_nY += pt.GetY();
+		return (*this);
+	}
+
+};
+
+class Rect
+{
+private:
+	int m_nX;
+	int m_nY;
+	int m_nWidth;
+	int m_nHeight;
+public:
+	Rect(int x,int y, int width, int height)
+	{
+		m_nX = x;
+		m_nY = y;
+		m_nWidth = width;
+		m_nHeight = height;
+	}
+
+	int GetX()
+	{
+		return m_nX;
+	}
+	int GetY()
+	{
+		return m_nY;
+	}
+	int GetWidth()
+	{
+		return m_nWidth;
+	}
+	int GetHeigth()
+	{
+		return m_nHeight;
+	}
+	Point GetStaPos()
+	{
+		return Point(m_nX,m_nY);
+	}
 };
 
 
@@ -81,6 +127,8 @@ class Display
 private:
 	static char m_cKey;
 public:
+	//2016.12.13 메소드 추가.
+	void static DrawRect(Rect& rect);
 	void static DrawRect(Point& pt , Point& pt2);
 	//가로 라인은 그린다.
 	void static DrawXLine(Point& pt1 , int len);
