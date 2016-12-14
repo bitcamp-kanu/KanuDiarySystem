@@ -4,9 +4,8 @@
 #include <time.h>
 #include <iostream>
 #include <string>
+#include "Display.h"
 using namespace std;
-
-char Display::m_cKey = '*';
 
 CUtil::CUtil(void)
 {
@@ -106,31 +105,44 @@ void CUtil::setcursortype(CURSOR_TYPE c)
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE),&CurInfo);
 }
 
-void CUtil::GetCurTime(string key)
+string CUtil::GetCurTime(const string& str)
 {
-	static char s[255];
+	char s[255] = {0};
 	struct tm *t;
 	time_t timer;
 	timer = time(NULL);    // 현재 시각을 초 단위로 얻기
 	t = localtime(&timer); // 초 단위의 시간을 분리하여 구조체에 넣기
+	
 	string test;
-	if(key == string("YTMMDD"))
+	if(str == string("YYMMDD"))
 	{
 		sprintf(s, "%04d-%02d-%02d",t->tm_year + 1900, t->tm_mon + 1, t->tm_mday);
 	}
-	else if(key == string("YTMMDDHHMM"))
+	else if(str == string("YYMMDDHHMM"))
 	{
 		sprintf(s, "%04d-%02d-%02d %02d:%02d"
 				,t->tm_year + 1900, t->tm_mon + 1, t->tm_mday,t->tm_hour, t->tm_min);
 	}
-	else if(key == string("YYMMDDHHMMSS"))
+	else if(str == string("YYMMDDHHMMSS"))
 	{
 		sprintf(s, "%04d-%02d-%02d %02d:%02d:%02d",
 			t->tm_year + 1900, t->tm_mon + 1, t->tm_mday,
 			t->tm_hour, t->tm_min, t->tm_sec
 			);
 	}
+	return string(s);
 }
+
+string CUtil::GetWeek()
+{
+	string week[] = { "일", "월", "화", "수", "목", "금", "토" };
+	struct tm *t;
+	time_t timer;
+	timer = time(NULL);    // 현재 시각을 초 단위로 얻기
+	t = localtime(&timer); // 초 단위의 시간을 분리하여 구조체에 넣기
+	return week[t->tm_wday];
+}
+
 
 #pragma warning(disable:4996)
 string CUtil::format_arg_list(const char *fmt, va_list args)
@@ -154,55 +166,4 @@ string CUtil::format_arg_list(const char *fmt, va_list args)
 
 
 
-//가로 라인은 그린다.
-void Display::DrawXLine(Point& pt1 , int len)
-{
-	for(int i = 0 ; i <len ; i++ )
-	{		
-		CUtil::Gotoxy(pt1.GetX() + i , pt1.GetY());
-		printf("%c",Display::m_cKey);
-	}
-}
-//세로 라인을 그린다.
-void Display::DrawYLine(Point& pt1 , int len)
-{
-	for(int i = 0 ; i <len ; i++ )
-	{		
-		CUtil::Gotoxy(pt1.GetX() , pt1.GetY() + i);
-		//printf("%c %d",Display::m_cKey,i);
-		printf("%c",Display::m_cKey);
-	}
-}
-
-void Display::DrawRect(Point& pt ,Point& pt2)
-{
-	for(int i = 0 ; i <pt2.GetX() ; i++ )
-	{	
-		int j=pt2.GetY();
-		CUtil::Gotoxy(pt.GetX() + i , pt.GetY());
-		printf("%c",Display::m_cKey);
-		CUtil::Gotoxy(pt.GetX() + i+1 , pt.GetY()+j);
-		printf("%c",Display::m_cKey);
-	}
-	for(int i = 0 ; i < pt2.GetY() ; i++ )
-	{	
-		int j=pt2.GetX();	
-		CUtil::Gotoxy(pt.GetX()  , pt.GetY()+i);
-		printf("%c",Display::m_cKey);
-		CUtil::Gotoxy(pt.GetX() + j, pt.GetY()+i+1);
-		printf("%c",Display::m_cKey);
-	}
-}
-
-//2016.12.13 메소드 추가.
-void Display::DrawRect(Rect& rect)
-{
-	Display::DrawXLine(rect.GetStaPos(),rect.GetWidth());
-	Point newPt = rect.GetStaPos() + Point(0,rect.GetHeigth()-1);
-	Display::DrawXLine(newPt,rect.GetWidth());
-	
-	Display::DrawYLine(rect.GetStaPos(),rect.GetHeigth());
-	newPt = rect.GetStaPos() + Point(rect.GetWidth()-1,0);
-	Display::DrawYLine(newPt,rect.GetHeigth());
-}
 
