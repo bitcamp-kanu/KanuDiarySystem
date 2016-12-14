@@ -64,9 +64,8 @@ void Layout::DrawCase3()
 
 void Layout::DrawToDay(int x /*= 3 1 + 2*/, int y /*= 1*/)
 {
-	//CUtil::Gotoxy(1 + 2,1);
 	CUtil::Gotoxy(x,y);
-	cout << CUtil::GetCurTime("YYMMDD") << " "<<CUtil::GetWeek();
+	cout << CUtil::GetCurTime("YYYYMMDD") << " "<<CUtil::GetWeek();
 }
 void Layout::DisplayMenuCalendarSelect(int x /*= 3 1 + 2*/, int y /*= 33*/)
 {
@@ -82,8 +81,10 @@ void Layout::DisplayMenuSchedulerSelect(int x /*= 3 1 + 2*/, int y /*= 33*/)
 }
 void Layout::DisplayMenuDialySelect(int x /*= 3 1 + 2*/, int y /*= 1*/)
 {
+	
+
 	CUtil::Gotoxy(x,y);
-	cout << "다이어리 입력창 입니다." << endl; 
+	cout << "신규(C) 수정(U) 삭제(D) 뒤로(B) 저장.(S)" << endl; 
 }
 
 eKeyCode Layout::InputMenu(Point pt)
@@ -116,6 +117,7 @@ eKeyCode Layout::InputMenu(Point pt)
 		case eUpdate:	//= 'U', //다이어리 수정.
 		case eBACK:		//= 'B', //뒤로.
 		case eQuit:		//= 'Q'
+		case eSAVE:		//= 'S'
 			eMenu = (eKeyCode)key;
 			break;
 		default:

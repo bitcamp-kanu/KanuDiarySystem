@@ -25,16 +25,21 @@ Day::~Day()
 
 void Day::DrawRect()
 {
-	DrawRect(m_nX, m_mY);
+	DrawRect(m_nX, m_mY,false);
 }
-void Day::DrawRect(int x, int y)
+void Day::DrawRect(int x, int y , bool isOffsest)
 {
-	m_nX = x;
-	m_mY = y;
-
-	Rect rect(x,y,width,height);
+	if(isOffsest)
+	{
+		m_nX = x + 0;
+		m_mY = y + 2;
+	}
+	//Rect rect(x+1,y + 3,width,height);
+	Rect rect(m_nX,m_mY,width,height);
+	
 	Display::DrawRect(rect);
-	CUtil::Gotoxy(x + 1, y + 1);
+	//CUtil::Gotoxy(x + 1, y + 1);
+	CUtil::Gotoxy(m_nX+ 1, m_mY+ 1);
 
 	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 

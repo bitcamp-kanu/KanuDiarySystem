@@ -55,8 +55,6 @@ void CodeListMgr::Display()
 	for (iter = m_rgCodes.begin(); iter != m_rgCodes.end(); ++iter)
 	{
 		cout << (*iter)->ToString() << endl;
-		//CLog::Instance()->WriteLog((*iter)->ToString(),__FILE__,__LINE__);
-		
 	}
 }
 

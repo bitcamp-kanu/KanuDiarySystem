@@ -18,6 +18,7 @@ enum eKeyCode
 	eUpdate		= 'U', //다이어리 수정.
 	eSchedule	= 'A', //다이어리 수정.
 	eBACK		= 'B', //뒤로
+	eSAVE		= 'S', //저장
 	eQuit		= 'X'
 };
 

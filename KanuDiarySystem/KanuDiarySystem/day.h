@@ -18,7 +18,7 @@ private:
 public:
 	Day();
 	virtual ~Day();
-	void DrawRect(int x,int y);
+	void DrawRect(int x, int y , bool isOffsest = true);
 	void DrawRect();
 	void SetDay(int day);
 	void SetColol(eColor col);

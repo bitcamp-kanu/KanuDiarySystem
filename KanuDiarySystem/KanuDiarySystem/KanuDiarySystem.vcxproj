@@ -75,22 +75,40 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CalendarManager.h" />
+    <ClInclude Include="CodeItem.h" />
     <ClInclude Include="CodeList.h" />
+    <ClInclude Include="day.h" />
     <ClInclude Include="Diary.h" />
+    <ClInclude Include="DiaryMgr.h" />
+    <ClInclude Include="Display.h" />
+    <ClInclude Include="KNFile.h" />
     <ClInclude Include="KNList.h" />
     <ClInclude Include="KNNode.h" />
     <ClInclude Include="Layout.h" />
+    <ClInclude Include="Log.h" />
+    <ClInclude Include="main.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Schedule.h" />
-    <ClInclude Include="turboc.h" />
+    <ClInclude Include="turboc.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Util.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CalendarManager.cpp" />
+    <ClCompile Include="CodeItem.cpp" />
     <ClCompile Include="CodeList.cpp" />
+    <ClCompile Include="day.cpp" />
     <ClCompile Include="Diary.cpp" />
+    <ClCompile Include="DiaryMgr.cpp" />
+    <ClCompile Include="Display.cpp" />
+    <ClCompile Include="ICodeListSearch.h" />
+    <ClCompile Include="KNFile.cpp" />
     <ClCompile Include="KNList.cpp" />
     <ClCompile Include="KNNode.cpp" />
     <ClCompile Include="Layout.cpp" />
+    <ClCompile Include="Log.cpp" />
     <ClCompile Include="main_hansang.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -101,9 +119,26 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="main_jungmin.cpp" />
+    <ClCompile Include="main.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Schedule.cpp" />
-    <ClCompile Include="turboc.cpp" />
+    <ClCompile Include="turboc.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Util.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Diary.DB" />
+    <None Include="ListImte.DB">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="Log.txt">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </None>
+    <None Include="test.txt">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -25,7 +25,6 @@ void Display::DrawYLine(Point& pt1 , int len)
 	for(int i = 0 ; i <len ; i++ )
 	{		
 		CUtil::Gotoxy(pt1.GetX() , pt1.GetY() + i);
-		//printf("%c %d",Display::m_cKey,i);
 		printf("%c",Display::m_cKey);
 	}
 }
