@@ -1,22 +1,28 @@
 #pragma once
-#include <istream>
-#include <string>
-using namespace std;
-string Days[7]={"일","월","화","수","목","금","토"};
-typedef enum eWeek{eSun,eMom,eTue,eWed,eThu,eFri,eSat};
-class CalendarItme
+#include "day.h"
+
+class calendarmanager
 {
 private:
-	int m_nYear;
-	int m_nMonth;
-	int m_nDay;
-	eWeek m_eWeek;
-	//string m_strDiary; //"YYYYMMDDHHMMSS"
-};
-class CalendarManager
-{
+	Day m_rgDay[6][7];
+	int m_year;
+	int m_month;
+	int m_week;
+
+	int m_nRow;
+	int m_nCol;
+	
 public:
-	CalendarManager(void);
-	~CalendarManager(void);
+	calendarmanager();
+	~calendarmanager();
+	void Setym(int year, int month);
+	void Dispaly();
+	int GetWeekDay(int year, int month, int day);
+	void initdata(int year,int month);
+
+	bool MoveLeft();
+	bool MoveRight();
+	
+
 };
 

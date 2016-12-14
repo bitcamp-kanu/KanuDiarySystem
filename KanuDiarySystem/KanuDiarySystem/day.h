@@ -1,5 +1,7 @@
 #pragma once
 #include "Util.h"
+#include <string>
+using namespace std;
 class Day
 {
 public:
@@ -11,12 +13,19 @@ private:
 	int m_mY;
 	int height;
 	int width;
+	string m_strWeek;
+	bool m_isSelect;
 public:
 	Day();
 	virtual ~Day();
 	void DrawRect(int x,int y);
+	void DrawRect();
 	void SetDay(int day);
 	void SetColol(eColor col);
+	void SetWeek(string str);
+	bool IsSeleted();
+	void SetSeleted(bool bselected);
+
 
 };
 
