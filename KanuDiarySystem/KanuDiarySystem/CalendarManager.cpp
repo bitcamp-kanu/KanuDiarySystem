@@ -51,7 +51,6 @@ void calendarmanager::Setym(int year, int month)
 }
 void calendarmanager::Dispaly()
 {
-	
 	for (int row = 0; row < 6; row++)
 	{
 		for (int col = 0; col < 7; col++)
@@ -132,26 +131,45 @@ bool calendarmanager::MoveRight()
 	return true;
 }
 
-
-int main(void)
+bool calendarmanager::MoveUp()
 {
-	calendarmanager mgr;
-	mgr.Dispaly(); 
-	mgr.initdata(2016, 12);
-	system("cls");
-	mgr.Dispaly();
+	m_rgDay[m_nRow][m_nCol].SetSeleted(false);
+	m_rgDay[m_nRow][m_nCol].DrawRect();
 
-	mgr.MoveLeft();
-	Sleep(1000);
-	mgr.MoveLeft();
-	Sleep(1000);
-	mgr.MoveRight();
-	Sleep(1000);
-	mgr.MoveRight();
-
-	getch();
-
+	m_rgDay[--m_nRow][m_nCol].SetSeleted(true);
+	m_rgDay[m_nRow][m_nCol].DrawRect();
+	return true;
 }
+bool calendarmanager::MoveDown()
+{
+	m_rgDay[m_nRow][m_nCol].SetSeleted(false);
+	m_rgDay[m_nRow][m_nCol].DrawRect();
+
+	m_rgDay[++m_nRow][m_nCol].SetSeleted(true);
+	m_rgDay[m_nRow][m_nCol].DrawRect();
+	return true;
+}
+
+
+//int main(void)
+//{
+//	calendarmanager mgr;
+//	mgr.Dispaly(); 
+//	mgr.initdata(2016, 12);
+//	system("cls");
+//	mgr.Dispaly();
+//
+//	mgr.MoveLeft();
+//	Sleep(1000);
+//	mgr.MoveLeft();
+//	Sleep(1000);
+//	mgr.MoveRight();
+//	Sleep(1000);
+//	mgr.MoveRight();
+//
+//	getch();
+//
+//}
 //void main()
 //{
 //	Day s[5][7];

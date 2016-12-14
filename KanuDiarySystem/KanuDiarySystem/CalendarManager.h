@@ -22,6 +22,8 @@ public:
 
 	bool MoveLeft();
 	bool MoveRight();
+	bool MoveDown();
+	bool MoveUp();
 	
 
 };
