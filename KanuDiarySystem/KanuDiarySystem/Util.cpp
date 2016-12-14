@@ -1,5 +1,10 @@
 #include "Util.h"
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <iostream>
+#include <string>
+using namespace std;
 
 char Display::m_cKey = '*';
 
@@ -14,7 +19,7 @@ CUtil::~CUtil(void)
 }
 
 
-#include "turboc.h"
+//#include "turboc.h"
 
 // 화면을 모두 지운다.
 void CUtil::clrscr()
@@ -49,25 +54,36 @@ Point CUtil::WhereXY()
 	return pt;
 }
 
+void CUtil::Tokenize(const string& str,vector<string>& tokens,const string& delimiters)
+{
+	// 맨 첫 글자가 구분자인 경우 무시
+	string::size_type lastPos = str.find_first_not_of(delimiters, 0);
+	// 구분자가 아닌 첫 글자를 찾는다
+	string::size_type pos     = str.find_first_of(delimiters, lastPos);
+	while (string::npos != pos || string::npos != lastPos)
+	{		
+		tokens.push_back(str.substr(lastPos, pos - lastPos)); // token을 찾았으니 vector에 추가한다
+		lastPos = str.find_first_not_of(delimiters, pos); // 구분자를 뛰어넘는다.  "not_of"에 주의하라
+		pos = str.find_first_of(delimiters, lastPos); // 다음 구분자가 아닌 글자를 찾는다
+	}
+}
 
+// 커서의 x 좌표를 조사한다.
+int CUtil::wherex()
+{
+	CONSOLE_SCREEN_BUFFER_INFO BufInfo;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE),&BufInfo);
+	return BufInfo.dwCursorPosition.X;
+}
 
+// 커서의 y좌표를 조사한다.
+int CUtil::wherey()
+{
+	CONSOLE_SCREEN_BUFFER_INFO BufInfo;
 
-//// 커서의 x 좌표를 조사한다.
-//int CUtil::wherex()
-//{
-//	CONSOLE_SCREEN_BUFFER_INFO BufInfo;
-//	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE),&BufInfo);
-//	return BufInfo.dwCursorPosition.X;
-//}
-//
-//// 커서의 y좌표를 조사한다.
-//int CUtil::wherey()
-//{
-//	CONSOLE_SCREEN_BUFFER_INFO BufInfo;
-//
-//	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE),&BufInfo);
-//	return BufInfo.dwCursorPosition.Y;
-//}
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE),&BufInfo);
+	return BufInfo.dwCursorPosition.Y;
+}
 
 // 커서를 숨기거나 다시 표시한다.
 void CUtil::setcursortype(CURSOR_TYPE c)
@@ -89,6 +105,52 @@ void CUtil::setcursortype(CURSOR_TYPE c)
 	}
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE),&CurInfo);
 }
+
+void CUtil::GetCurTime(string key)
+{
+	static char s[255];
+	struct tm *t;
+	time_t timer;
+	timer = time(NULL);    // 현재 시각을 초 단위로 얻기
+	t = localtime(&timer); // 초 단위의 시간을 분리하여 구조체에 넣기
+	string test;
+	if(key == string("YTMMDD"))
+	{
+		sprintf(s, "%04d-%02d-%02d",t->tm_year + 1900, t->tm_mon + 1, t->tm_mday);
+	}
+	else if(key == string("YTMMDDHHMM"))
+	{
+		sprintf(s, "%04d-%02d-%02d %02d:%02d"
+				,t->tm_year + 1900, t->tm_mon + 1, t->tm_mday,t->tm_hour, t->tm_min);
+	}
+	else if(key == string("YYMMDDHHMMSS"))
+	{
+		sprintf(s, "%04d-%02d-%02d %02d:%02d:%02d",
+			t->tm_year + 1900, t->tm_mon + 1, t->tm_mday,
+			t->tm_hour, t->tm_min, t->tm_sec
+			);
+	}
+}
+
+#pragma warning(disable:4996)
+string CUtil::format_arg_list(const char *fmt, va_list args)
+{
+	if (!fmt) return "";
+	int   result = -1, length = 256;
+	char *buffer = 0;
+	while (result == -1)
+	{
+		if (buffer) delete [] buffer;
+		buffer = new char [length + 1];
+		memset(buffer, 0, length + 1);
+		result = _vsnprintf(buffer, length, fmt, args);
+		length *= 2;
+	}
+	std::string s(buffer);
+	delete [] buffer;
+	return s;
+}
+
 
 
 
@@ -143,7 +205,4 @@ void Display::DrawRect(Rect& rect)
 	newPt = rect.GetStaPos() + Point(rect.GetWidth()-1,0);
 	Display::DrawYLine(newPt,rect.GetHeigth());
 }
-
-
-
 
