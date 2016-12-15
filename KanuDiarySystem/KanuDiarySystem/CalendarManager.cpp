@@ -1,9 +1,16 @@
 #include <iostream>
 #include"CalendarManager.h"
 #include <windows.h>
-#define roww 6
-#define coll 9
+#include <vector>
+#include <time.h>
+#include "Util.h"
+
 using namespace std;
+#define white (FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN)
+#define yellow (FOREGROUND_RED | FOREGROUND_GREEN)
+#define sky (FOREGROUND_BLUE | FOREGROUND_GREEN)
+#define red (FOREGROUND_RED)
+
 calendarmanager::calendarmanager()
 {
 	m_nRow = m_nCol = 3;
@@ -34,6 +41,7 @@ calendarmanager::~calendarmanager()
 /* 지정한 년도의 월일에 대한  요일을 구하는 함수 */
 int calendarmanager::GetWeekDay(int year, int month, int day)
 {
+
 	int i;
 	int mdays[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	long wday, days_passed;
@@ -43,8 +51,8 @@ int calendarmanager::GetWeekDay(int year, int month, int day)
 	days_passed = (long)(year - 1) * 365 + ((year - 1) / 4) - ((year - 1) / 100) + (((year - 1) / 400));
 
 	/* 지정된 달의 이전월말까지 경과 날 수 */
-	for(i = 0; i < month - 1; i++)
-		days_passed += mdays[i];
+	/*for(i = 0; i < month - 1; i++)*/
+		//days_passed += mdays[i];
 
 	/* 지정된 달의 날자까지의 경과일 수 */
 	days_passed += day;
@@ -63,26 +71,32 @@ void calendarmanager::Dispaly()
 	{
 		for (int col = 0; col < 7; col++)
 		{
+
 			if (row == 0)
 			{
+			
+
 				if (col == 0)
 				{
-					m_rgDay[row][col].DrawRect(col * coll, row * roww - row);
+					m_rgDay[row][col].DrawRect(col * _COLL_, row * _ROWW_ - row);
+					m_rgDay[row][col].SetColol(Day::eColor::Red);
 				}
+			
 				else
 				{
-					m_rgDay[row][col].DrawRect(col * coll - col, row * roww - row);
+					m_rgDay[row][col].DrawRect((col * _COLL_) - col, row * _ROWW_ - row);
 				}
 			}
 			else
 			{
 				if (col == 0)
 				{
-					m_rgDay[row][col].DrawRect(col * coll, row * roww - row);
+					m_rgDay[row][col].DrawRect(col * _COLL_, row * _ROWW_ - row);
+					m_rgDay[row][col].SetColol(Day::eColor::Red);
 				}
 				else
 				{
-					m_rgDay[row][col].DrawRect((col * coll) - col, row * roww - row);
+					m_rgDay[row][col].DrawRect((col * _COLL_) - col, row * _ROWW_ - row);
 				}
 
 			}
@@ -91,21 +105,51 @@ void calendarmanager::Dispaly()
 }
 void calendarmanager::initdata(int year, int month)
 {
+	int a,b,c;
+	CUtil::GetCurTime(a,b,c);
+	
+	
 	int day = 0;
 	m_year = year;
 	m_month = month;
-
 	
 	m_week=GetWeekDay(m_year, m_month, 1);
 
+	m_rgDay[0][0].width = _COLL_;
+	m_rgDay[0][0].height = _ROWW_;
+	m_rgDay[0][1].width = _COLL_;
+	m_rgDay[0][1].height = _ROWW_;
+	m_rgDay[0][2].width = _COLL_;
+	m_rgDay[0][2].height = _ROWW_;
+	m_rgDay[0][3].width = _COLL_;
+	m_rgDay[0][3].height = _ROWW_;
+	m_rgDay[0][4].width = _COLL_;
+	m_rgDay[0][4].height = _ROWW_;
+	m_rgDay[0][5].width = _COLL_;
+	m_rgDay[0][5].height = _ROWW_;
+	m_rgDay[0][6].width = _COLL_;
+	m_rgDay[0][6].height = _ROWW_;
+	int cnt=1;
  	for (int row = 1; row<6; row++)
 	{
 		for (int col = 0; col < 7; col++)
-		{
+		{	
+			
+			
+			if (row == 2 && (col%2) == 0)
+			{
+				m_rgDay[row][col].m_pDiary = new Diary();
+				
+			} 
+ 			
+			
 			if (day - m_week > 0) 
 			{
-				m_rgDay[row][col].SetDay(day-m_week);
-			
+				
+					m_rgDay[row][col].SetDay(day-m_week);	
+
+					m_rgDay[row][col].width = _COLL_;
+					m_rgDay[row][col].height = _ROWW_;
 		
 			}
 			else
@@ -113,8 +157,11 @@ void calendarmanager::initdata(int year, int month)
 				m_rgDay[row][col].SetDay(0);
 				
 				
-			}
-			day++;
+			}day++;
+			
+			
+			
+			
 		}
 	}
 	

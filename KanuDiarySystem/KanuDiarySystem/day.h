@@ -1,12 +1,13 @@
 #pragma once
 #include "Util.h"
 #include <string>
+#include "Diary.h"
 using namespace std;
 class Day
 {
 public:
 	enum eColor { White = 1, Yellow=2, Sky=3, Red=4};
-private:
+public:
 	eColor m_eCol;
 	int m_day;
 	int m_nX;
@@ -15,6 +16,9 @@ private:
 	int width;
 	string m_strWeek;
 	bool m_isSelect;
+
+	Diary* m_pDiary;
+
 public:
 	Day();
 	virtual ~Day();
@@ -25,7 +29,7 @@ public:
 	void SetWeek(string str);
 	bool IsSeleted();
 	void SetSeleted(bool bselected);
-
+	//void InputDiary(int year,int month);
 
 };
 

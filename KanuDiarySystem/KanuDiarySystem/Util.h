@@ -20,8 +20,6 @@ private:
 	static string format_arg_list(const char *fmt, va_list args);
 public:
 	static string GetCurTime(const string& str);
-	static string CUtil::GetCurTime();
-	static void GetCurTime(int& yyyy,int& mm , int& dd);
 	static void clrscr();
 	static void Gotoxy(Point& pt);
 	static void Gotoxy(int x, int y);
@@ -33,8 +31,6 @@ public:
 	//string 를 구분자를 통해서 불리 한다.
 	static void Tokenize(const string& str,vector<string>& tokens,const string& delimiters = " ");
 	static string GetWeek();
-	//"YYYYMMDD" 형식의 str 을 YYYY-MM-DD 형식으로 변경 한다.
-	static string ToDateFormat(string str);
 	
 	//static string GetCurrentTime(int a);
 	

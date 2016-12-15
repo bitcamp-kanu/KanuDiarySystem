@@ -9,10 +9,14 @@ using namespace std;
 #define Selected (FOREGROUND_GREEN | BACKGROUND_RED)
 
 Day::Day()
+	:m_pDiary(NULL)
 {
 	m_day = 0;
-	height = 5;
-	width = 9;
+	//height = 5;
+	//width = 9;
+
+	height = 7;
+	width = 10;
 	m_eCol = Yellow;
 	m_isSelect = false;
 
@@ -69,7 +73,15 @@ void Day::DrawRect(int x, int y , bool isOffsest)
 	{
 		if (m_day > 0)
 		{
-			cout << m_day;
+			if(this->m_pDiary!=NULL)
+			{
+				cout << m_day<<"¡Ú";
+			}
+			else
+			{
+				cout << m_day;
+			}
+			
 		}
 		
 	}
@@ -102,3 +114,5 @@ void Day::SetSeleted(bool bselected)
 {
 	m_isSelect = bselected;
 }
+
+

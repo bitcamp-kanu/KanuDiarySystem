@@ -132,63 +132,7 @@ string CUtil::GetCurTime(const string& str)
 	}	
 	return string(s);
 }
-string CUtil::GetCurTime()
-{
-	char s[255] = {0};
-	struct tm *t;
-	time_t timer;
-	timer = time(NULL);    // 현재 시각을 초 단위로 얻기
-	t = localtime(&timer); // 초 단위의 시간을 분리하여 구조체에 넣기
 
-	string test;
-	sprintf(s, "%04d%02d%02d%02d%02d%02d",
-		t->tm_year + 1900, t->tm_mon + 1, t->tm_mday,
-		t->tm_hour, t->tm_min, t->tm_sec
-		);	
-	return string(s);
-}
-
-void CUtil::GetCurTime(int& yyyy,int& mm , int& dd)
-{
-	struct tm *t;
-	time_t timer;
-	timer = time(NULL);    // 현재 시각을 초 단위로 얻기
-	t = localtime(&timer); // 초 단위의 시간을 분리하여 구조체에 넣기
-
-	yyyy = t->tm_year;
-	mm = t ->tm_mon;
-	dd = t->tm_mday;
-}
-string CUtil::ToDateFormat(string str)
-{
-	string result;
-	string year;
-	string month;
-	string day;
-	string hh;
-	string mm;
-	if(str.length() == 8)
-	{
-		year = str.substr(0,4);
-		month = str.substr(4,2);
-		day = str.substr(6,2);
-		result = year+"-"+month+ "-"+ day;
-	}
-	else if(str.length() == 12)
-	{
-		year = str.substr(0,4);
-		month = str.substr(4,2);
-		day = str.substr(6,2);
-		hh  = str.substr(8,2);
-		mm = str.substr(10,2);
-		result = year+"-"+month+ "-"+ day + " " +hh+ ":" + mm;
-	}
-	else
-	{
-		result = str;
-	}
-	return result;
-}
 string CUtil::GetWeek()
 {
 	string week[] = { "일", "월", "화", "수", "목", "금", "토" };

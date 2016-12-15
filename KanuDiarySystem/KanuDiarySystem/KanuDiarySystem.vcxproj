@@ -74,6 +74,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="base.h" />
     <ClInclude Include="CalendarManager.h" />
     <ClInclude Include="CodeItem.h" />
     <ClInclude Include="CodeList.h" />
@@ -82,6 +83,7 @@
     <ClInclude Include="DiaryMgr.h" />
     <ClInclude Include="Display.h" />
     <ClInclude Include="KNFile.h" />
+    <ClInclude Include="KNItem.h" />
     <ClInclude Include="KNList.h" />
     <ClInclude Include="KNNode.h" />
     <ClInclude Include="Layout.h" />
@@ -105,6 +107,7 @@
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="ICodeListSearch.h" />
     <ClCompile Include="KNFile.cpp" />
+    <ClCompile Include="KNItem.cpp" />
     <ClCompile Include="KNList.cpp" />
     <ClCompile Include="KNNode.cpp" />
     <ClCompile Include="Layout.cpp" />
@@ -115,16 +118,14 @@
     <ClCompile Include="main_isol.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="main_uihyun.cpp" />
-    <ClCompile Include="main_jungmin.cpp">
+    <ClCompile Include="main_uihyun.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="main_jungmin.cpp" />
     <ClCompile Include="main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="printcalendar.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="printcalendar.cpp" />
     <ClCompile Include="Schedule.cpp" />
     <ClCompile Include="turboc.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -142,6 +143,7 @@
     <None Include="test.txt">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </None>
+    <None Include="uiyuiyiy" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
