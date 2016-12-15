@@ -3,9 +3,11 @@
 #include <string>
 #include "Diary.h"
 #include "base.h"
+#include "ICodeListSearch.h"
+#include "day.h"
 using namespace std;
 //다이어리 정보를 관리 한다.
-class DiaryMgr
+class DiaryMgr : public ICalendDataChanged ,public IDiaryDataSearch
 {
 private:
 	eEditMode m_editMode;
@@ -36,8 +38,10 @@ public:
 	//수정할 아이템을 설정 한다.
 	Diary* SetModifyItem(string key);
 	Diary* SetNewItem();
-	
 
+
+	int SearchData(string key ,vector<Diary*>& vec);	
+	int DataChanged(Day* before, Day* data);
 	
 
 };

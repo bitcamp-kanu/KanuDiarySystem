@@ -1,5 +1,5 @@
 #pragma once
-#include <xstring>
+#include <string>
 using namespace std;
 class Diary
 {

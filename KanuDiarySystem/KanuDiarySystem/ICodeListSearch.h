@@ -2,12 +2,12 @@
 #ifndef _ICODELISTSEARCH_H_
 #define _ICODELISTSEARCH_H_
 
-
 #include "KNNode.h"
 #include "CodeItem.h"
 #include <vector>
 #include <string>
 #include "day.h"
+#include "Diary.h"
 using namespace std;
 
 //class Code;
@@ -35,6 +35,6 @@ class IDiaryDataSearch
 {
 public:
 	//°Ë»ö.
-	virtual int SearchData(string yyyymmdd, vector<Day*>& ) = 0;
+	virtual int SearchData(string key ,vector<Diary*>& vec) = 0;
 };
 #endif

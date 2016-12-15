@@ -221,3 +221,24 @@ Diary* DiaryMgr::SetNewItem()
 	m_pCur = new Diary();
 	return m_pCur;
 }
+
+
+int DiaryMgr::SearchData(string key ,vector<Diary*>& vec)
+{
+	list<Diary*>::iterator iter;
+	for (iter = m_rgDiary.begin(); iter != m_rgDiary.end(); ++iter)
+	{
+		if((*iter)->GetDay() == key)
+		{
+			vec.push_back(new Diary());
+		}
+	}
+	return 0;
+}
+// 다이어어리 데이터 체인디.
+int DiaryMgr::DataChanged(Day* before, Day* data)
+{
+	Layout::Instance()->SetMessage("다이어리 데이터가 변경 되었습니다.");
+	Layout::Instance()->DisplayMessage();
+	return 0;
+}
