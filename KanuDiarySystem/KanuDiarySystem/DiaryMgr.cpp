@@ -263,7 +263,7 @@ void DiaryMgr::DisplayCalender()
 {
 	if(this->m_pCalenderSelected != NULL)
 	{
-		CUtil::Gotoxy(70,4);
+		CUtil::Gotoxy(70,3);
 		cout << m_pCalenderSelected ->m_strYYYMMDD;
 		if( m_pCalenderSelected->m_pDiary != NULL)
 		{

@@ -35,6 +35,10 @@ public:
 	void SetICalendDataChanged(ICalendDataChanged* piCalendDataChanged);
 	void SetIDiaryDataSearch(IDiaryDataSearch* m_piDiaryDataSearch);
 
+	Day* GetSelectDay();
+
+
+
 
 };
 

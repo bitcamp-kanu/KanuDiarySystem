@@ -9,8 +9,9 @@ using namespace std;
 #define Selected (FOREGROUND_GREEN | BACKGROUND_RED)
 
 Day::Day()
-	:m_pDiary(NULL)
 {
+	m_pDiary = NULL;
+	m_strWeek = "";
 	m_day = 0;
 	//height = 5;
 	//width = 9;

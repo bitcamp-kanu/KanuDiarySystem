@@ -6,6 +6,8 @@
 #include "Util.h"
 #include <vector>
 #include "Layout.h"
+#include "Log.h"
+
 using namespace std;
 #define white (FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN)
 #define yellow (FOREGROUND_RED | FOREGROUND_GREEN)
@@ -112,7 +114,7 @@ void calendarmanager::initdata(int year, int month)
 	int yyyy,mm,dd;
 	CUtil::GetCurTime(yyyy,mm,dd);
 
-	
+	int One[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	m_year = year;
 	m_month = month;
 
@@ -139,8 +141,9 @@ void calendarmanager::initdata(int year, int month)
 	{
 		for (int col = 0; col < 7; col++)
 		{	
+			
 			int val = (day - m_week) + 2 ;
-			if (val > 0) 
+			if (val > 0  & val <= One[mm-1]) 
 			{				
 				char buff[100];
 				sprintf(buff,"%04d%02d%02d",m_year,m_month,val);
@@ -207,8 +210,9 @@ void calendarmanager::initdata(int year, int month)
 
 			}
 			day++;
+				
+			}
 		}
-	}
 
 }
 
@@ -216,7 +220,12 @@ bool calendarmanager::MoveLeft()
 {
 	Day* pPOld = NULL;
 	pPOld = &m_rgDay[m_nRow][m_nCol];
-
+	if(m_rgDay[m_nRow][m_nCol-1].m_day == 0 && m_nCol >= (0+1))
+	{
+		Layout::Instance()->SetMessage("이동할수 있는 위치가 아닙니다.");
+		Layout::Instance()->DisplayMessage();
+		return false;
+	}
 	pPOld->SetSeleted(false);
 	m_rgDay[m_nRow][--m_nCol].SetSeleted(true);
 	m_rgDay[m_nRow][m_nCol].DrawRect();
@@ -235,6 +244,12 @@ bool calendarmanager::MoveRight()
 {
 	Day* pPOld = NULL;
 	pPOld = &m_rgDay[m_nRow][m_nCol];
+	if(m_rgDay[m_nRow][m_nCol+1].m_day == 0 && m_nCol >= (6-1))
+	{
+		Layout::Instance()->SetMessage("이동할수 있는 위치가 아닙니다.");
+		Layout::Instance()->DisplayMessage();
+		return false;
+	}
 
 	pPOld->SetSeleted(false);
 	m_rgDay[m_nRow][++m_nCol].SetSeleted(true);
@@ -252,8 +267,19 @@ bool calendarmanager::MoveRight()
 
 bool calendarmanager::MoveUp()
 {
+	
 	Day* pPOld = NULL;
 	pPOld = &m_rgDay[m_nRow][m_nCol];
+	if(m_rgDay[m_nRow-1][m_nCol].m_day == 0 && m_nRow >= (0+1))
+	{
+		Layout::Instance()->SetMessage("이동할수 있는 위치가 아닙니다.");
+		Layout::Instance()->DisplayMessage();
+		return false;
+	}
+	char buff[1024];
+	sprintf(buff,"%d ,%d ", m_nRow , m_nCol);
+	CLog::Instance()->WriteLog(string(buff),__FILE__,__LINE__);
+	
 
 	pPOld->SetSeleted(false);
 	m_rgDay[--m_nRow][m_nCol].SetSeleted(true);
@@ -280,7 +306,9 @@ bool calendarmanager::MoveDown()
 		Layout::Instance()->DisplayMessage();
  		return false;
 	}
-
+	char buff[1024];
+	sprintf(buff,"%d ,%d ", m_nRow , m_nCol);
+	CLog::Instance()->WriteLog(string(buff),__FILE__,__LINE__);
 
 	pPOld->SetSeleted(false);
 	m_rgDay[++m_nRow][m_nCol].SetSeleted(true);
@@ -301,6 +329,11 @@ void calendarmanager::SetICalendDataChanged(ICalendDataChanged* piCalendDataChan
 void calendarmanager::SetIDiaryDataSearch(IDiaryDataSearch* piDiaryDataSearch)
 {
 	this->m_piDiaryDataSearch = piDiaryDataSearch;
+}
+
+Day* calendarmanager::GetSelectDay()
+{
+	return &m_rgDay[m_nRow][m_nCol];
 }
 
 
