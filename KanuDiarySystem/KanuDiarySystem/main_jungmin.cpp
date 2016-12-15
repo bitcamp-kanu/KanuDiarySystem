@@ -8,6 +8,7 @@
 #include "CalendarManager.h"
 #include "Diary.h"
 #include "DiaryMgr.h"
+#include "ScheduleMgr.h"
 
 
 using namespace std;
@@ -43,6 +44,10 @@ int main()
 	int month = 11; 
 	bool bReDraw = true;
 	calendarmanager calenderMgr;
+	ScheduleMgr scheduleMgr;
+	//InsertShowSC();
+	
+
 	DiaryMgr diarMgr;
 	diarMgr.LoadFile();
 	calenderMgr.SetIDiaryDataSearch(&diarMgr);
@@ -125,9 +130,11 @@ int main()
 				break;
 			case eLayOut::eLOSchedule:
 				system("cls");
-				Layout::Instance()->DrawCase3();
-				Layout::Instance()->DrawToDay();
-				Layout::Instance()->DisplayMenuSchedulerSelect();
+				system("mode con:cols=100 lines=42");
+				//Layout::Instance()->DrawCase3();
+				//Layout::Instance()->DrawToDay();
+				//Layout::Instance()->DisplayMenuSchedulerSelect();
+				scheduleMgr.ListShowSC();
 				break;
 			}
 		}
