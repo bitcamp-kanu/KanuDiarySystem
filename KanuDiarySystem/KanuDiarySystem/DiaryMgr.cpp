@@ -50,6 +50,7 @@ void DiaryMgr::LoadFile()
 		}
 	}
 }
+//다이어리 정보를 저장 한다.
 void DiaryMgr::SaveFile()
 {
 	KNFile knFile;
@@ -59,6 +60,7 @@ void DiaryMgr::SaveFile()
 		list<Diary*>::iterator iter;
 		for (iter = m_rgDiary.begin(); iter != m_rgDiary.end(); ++iter)
 		{
+			(*iter)->SaveTextContent();
 			knFile.Write((void*)(*iter),sizeof(Diary),1);
 		}
 	}
@@ -195,6 +197,7 @@ bool DiaryMgr::SaveData()
 			AddItem(m_pCur);
 			m_pCur->m_isSave = true;
 			m_pCur->MakeFile(); //데이터 생성과 동시에 파일을 생성 한다.
+			m_pCur->SaveTextContent();
 		}
 		else
 		{
@@ -240,5 +243,15 @@ int DiaryMgr::DataChanged(Day* before, Day* data)
 {
 	Layout::Instance()->SetMessage("다이어리 데이터가 변경 되었습니다.");
 	Layout::Instance()->DisplayMessage();
+	return 0;
+}
+
+int DiaryMgr::TextEdit()
+{	
+	if(m_pCur != NULL)
+	{
+		m_pCur->m_oTextEdit.PrintLine();
+		m_pCur->m_oTextEdit.InputLine();
+	}
 	return 0;
 }

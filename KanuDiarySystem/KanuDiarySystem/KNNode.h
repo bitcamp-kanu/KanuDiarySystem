@@ -2,10 +2,8 @@
 
 class KNNode
 {
-	friend class KNList;
-
-private :
-	KNNode *next;
+public :
+	KNNode *next; // 노드 포인터
 
 public :
 	KNNode();

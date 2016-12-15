@@ -132,8 +132,23 @@ string CUtil::GetCurTime(const string& str)
 	}	
 	return string(s);
 }
+string CUtil::GetCurTime()
+{
+	char s[255] = {0};
+	struct tm *t;
+	time_t timer;
+	timer = time(NULL);    // 현재 시각을 초 단위로 얻기
+	t = localtime(&timer); // 초 단위의 시간을 분리하여 구조체에 넣기
 
-void CUtil::GetCurTime(int yyyy,int mm , int dd)
+	string test;
+	sprintf(s, "%04d%02d%02d%02d%02d%02d",
+		t->tm_year + 1900, t->tm_mon + 1, t->tm_mday,
+		t->tm_hour, t->tm_min, t->tm_sec
+		);	
+	return string(s);
+}
+
+void CUtil::GetCurTime(int& yyyy,int& mm , int& dd)
 {
 	struct tm *t;
 	time_t timer;

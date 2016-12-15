@@ -20,6 +20,7 @@ private:
 	static string format_arg_list(const char *fmt, va_list args);
 public:
 	static string GetCurTime(const string& str);
+	static string CUtil::GetCurTime();
 	static void GetCurTime(int& yyyy,int& mm , int& dd);
 	static void clrscr();
 	static void Gotoxy(Point& pt);

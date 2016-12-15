@@ -5,6 +5,7 @@
 #include "base.h"
 #include "ICodeListSearch.h"
 #include "day.h"
+#include "KNItem.h"
 using namespace std;
 //다이어리 정보를 관리 한다.
 class DiaryMgr : public ICalendDataChanged ,public IDiaryDataSearch
@@ -13,7 +14,7 @@ private:
 	eEditMode m_editMode;
 	Diary* m_pCur;
 	string m_strFileName;
-	list<Diary*> m_rgDiary;
+	list<Diary*> m_rgDiary;	
 public:
 	DiaryMgr(void);
 	~DiaryMgr(void);
@@ -42,6 +43,7 @@ public:
 
 	int SearchData(string key ,vector<Diary*>& vec);	
 	int DataChanged(Day* before, Day* data);
+	int TextEdit();
 	
 
 };

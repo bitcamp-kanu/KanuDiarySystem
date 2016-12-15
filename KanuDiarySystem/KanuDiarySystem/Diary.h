@@ -1,19 +1,21 @@
 #pragma once
 #include <string>
+#include "KNItem.h"
 using namespace std;
 class Diary
 {
 public:
 	bool m_isSave;
+	TextEditer m_oTextEdit;
 private:
 	char m_strKey[20]; //yyyyMMddHHMMSS
 	char m_strTitle[100];
 	char m_strDay[8]; //yyyymmdd
 	char m_strCreateDate[15]; //yyyyMMddHHMMSS
-	char m_strFleeCode[4]; //3자리.
-	char m_strWeadtherCode[4]; //3자리.
+	char m_strFleeCode[100]; //3자리.
+	char m_strWeadtherCode[100]; //3자리.
 	char m_strDiaryPath[255];
-	char m_strWeek[5]; //yyyymmdd
+	char m_strWeek[100]; //yyyymmdd
 
 public:
 	string GetKey(); //yyyyMMddHHMMSS
@@ -34,6 +36,7 @@ public:
 	void SetWeek(string str);
 
 	bool MakeFile(); //파일을 생성 한다.
+	bool SaveTextContent(); //Text Content 를 저장 한다.
 
 	bool ValidData();
 

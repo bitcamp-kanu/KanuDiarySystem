@@ -22,7 +22,7 @@ Diary::Diary(void)
 	string strDay = CUtil::GetCurTime("YYYYMMDD");
 	string strWeek = CUtil::GetWeek();
 	string filePath = "C:\\Kanu\\";	
-	filePath += CUtil::GetCurTime("YYYYMMDDHHMMSS");
+	filePath += CUtil::GetCurTime();
 	filePath += ".DB";
 
 	strcpy(m_strKey,crateDate.c_str()); // Key 도 년월일 시분초로 설장 한다.
@@ -143,4 +143,17 @@ bool Diary::ValidData()
 		return false;
 	}
 	return true;
+}
+
+bool Diary::SaveTextContent() //Text Content 를 저장 한다.
+{
+	KNFile file;
+	file.Open(m_strDiaryPath,"w");
+	vector<string> vec;
+	m_oTextEdit.GetDataAll(vec);
+	for(int i = 0; i < vec.size() ;i++)
+	{
+		file.WriteLine(vec[i]);
+	}
+	return vec.size();
 }

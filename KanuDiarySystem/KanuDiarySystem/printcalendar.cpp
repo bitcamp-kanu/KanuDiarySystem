@@ -2,7 +2,7 @@
 #include"day.h"
 using namespace std;
 
-void main()
+void main__()
 {
 	Day s[5][7];
 	int day = 1;
