@@ -34,7 +34,7 @@ public:
 class IDiaryDataSearch
 {
 public:
-	//날씨 or 기분
-	virtual int DataChanged(Day* before, Day* data) = 0;
+	//검색.
+	virtual int SearchData(string yyyymmdd, vector<Day*>& ) = 0;
 };
 #endif
