@@ -1,7 +1,8 @@
 #include <iostream>
 #include"CalendarManager.h"
 #include <windows.h>
-
+#define roww 6
+#define coll 9
 using namespace std;
 calendarmanager::calendarmanager()
 {
@@ -17,6 +18,13 @@ calendarmanager::calendarmanager()
 	m_rgDay[0][6].SetWeek("Åä¿äÀÏ");
 
 	initdata(m_year, m_month);
+	m_piDiaryDataSearch = NULL;
+	m_piCalendDataChanged =NULL;
+	//if(m_piDiaryDataSearch !=NULL)
+	///*{
+	//m_piDiaryDataSearch->SearchData();
+	//}*/
+
 	
 
 }
@@ -59,22 +67,22 @@ void calendarmanager::Dispaly()
 			{
 				if (col == 0)
 				{
-					m_rgDay[row][col].DrawRect(col * 9, row * 5 - row);
+					m_rgDay[row][col].DrawRect(col * coll, row * roww - row);
 				}
 				else
 				{
-					m_rgDay[row][col].DrawRect(col * 9 - col, row * 5 - row);
+					m_rgDay[row][col].DrawRect(col * coll - col, row * roww - row);
 				}
 			}
 			else
 			{
 				if (col == 0)
 				{
-					m_rgDay[row][col].DrawRect(col * 9, row * 5 - row);
+					m_rgDay[row][col].DrawRect(col * coll, row * roww - row);
 				}
 				else
 				{
-					m_rgDay[row][col].DrawRect((col * 9) - col, row * 5 - row);
+					m_rgDay[row][col].DrawRect((col * coll) - col, row * roww - row);
 				}
 
 			}
@@ -114,40 +122,87 @@ void calendarmanager::initdata(int year, int month)
 
 bool calendarmanager::MoveLeft()
 {
-	m_rgDay[m_nRow][m_nCol].SetSeleted(false);
-	m_rgDay[m_nRow][m_nCol].DrawRect();
+	Day* pPOld = NULL;
+	pPOld = &m_rgDay[m_nRow][m_nCol];
 
+	pPOld->SetSeleted(false);
 	m_rgDay[m_nRow][--m_nCol].SetSeleted(true);
 	m_rgDay[m_nRow][m_nCol].DrawRect();
+
+	m_rgDay[m_nRow][m_nCol].DrawRect();
+	pPOld->DrawRect();
+	
+	
+	if(m_piCalendDataChanged != NULL)
+	{
+		m_piCalendDataChanged->DataChanged(pPOld,&m_rgDay[m_nRow][m_nCol]);
+	}
+	
 	return true;
 }
 bool calendarmanager::MoveRight()
 {
-	m_rgDay[m_nRow][m_nCol].SetSeleted(false);
-	m_rgDay[m_nRow][m_nCol].DrawRect();
+	Day* pPOld = NULL;
+	pPOld = &m_rgDay[m_nRow][m_nCol];
 
+	pPOld->SetSeleted(false);
 	m_rgDay[m_nRow][++m_nCol].SetSeleted(true);
 	m_rgDay[m_nRow][m_nCol].DrawRect();
+
+	m_rgDay[m_nRow][m_nCol].DrawRect();
+	pPOld->DrawRect();
+
+	if(m_piCalendDataChanged != NULL)
+	{
+		m_piCalendDataChanged->DataChanged(pPOld,&m_rgDay[m_nRow][m_nCol]);
+	}
 	return true;
 }
 
 bool calendarmanager::MoveUp()
 {
-	m_rgDay[m_nRow][m_nCol].SetSeleted(false);
+	Day* pPOld = NULL;
+	pPOld = &m_rgDay[m_nRow][m_nCol];
+
+	pPOld->SetSeleted(false);
+	m_rgDay[--m_nRow][m_nCol].SetSeleted(true);
+	//m_rgDay[m_nRow][m_nCol].SetSeleted(false);
 	m_rgDay[m_nRow][m_nCol].DrawRect();
 
-	m_rgDay[--m_nRow][m_nCol].SetSeleted(true);
 	m_rgDay[m_nRow][m_nCol].DrawRect();
+	pPOld->DrawRect();
+	
+	
+	if(m_piCalendDataChanged != NULL)
+	{
+		m_piCalendDataChanged->DataChanged(pPOld,&m_rgDay[m_nRow][m_nCol]);
+	}
 	return true;
 }
 bool calendarmanager::MoveDown()
 {
-	m_rgDay[m_nRow][m_nCol].SetSeleted(false);
-	m_rgDay[m_nRow][m_nCol].DrawRect();
+	Day* pPOld = NULL;
+	pPOld = &m_rgDay[m_nRow][m_nCol];
 
+	pPOld->SetSeleted(false);
 	m_rgDay[++m_nRow][m_nCol].SetSeleted(true);
 	m_rgDay[m_nRow][m_nCol].DrawRect();
+
+	m_rgDay[m_nRow][m_nCol].DrawRect();
+	pPOld->DrawRect();
+	if(m_piCalendDataChanged != NULL)
+	{
+		m_piCalendDataChanged->DataChanged(pPOld,&m_rgDay[m_nRow][m_nCol]);
+	}
 	return true;
+}
+void calendarmanager::SetICalendDataChanged(ICalendDataChanged* piCalendDataChanged)
+{
+	this->m_piCalendDataChanged = piCalendDataChanged;
+}
+void calendarmanager::SetIDiaryDataSearch(IDiaryDataSearch* piDiaryDataSearch)
+{
+	this->m_piDiaryDataSearch = piDiaryDataSearch;
 }
 
 
@@ -221,3 +276,4 @@ bool calendarmanager::MoveDown()
 //	system("pause");
 //}
 	
+

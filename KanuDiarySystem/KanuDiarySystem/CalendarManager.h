@@ -1,6 +1,6 @@
 #pragma once
 #include "day.h"
-
+#include "ICodeListSearch.h"
 class calendarmanager
 {
 private:
@@ -11,6 +11,9 @@ private:
 
 	int m_nRow;
 	int m_nCol;
+
+	ICalendDataChanged* m_piCalendDataChanged;
+	IDiaryDataSearch* m_piDiaryDataSearch;
 	
 public:
 	calendarmanager();
@@ -24,7 +27,9 @@ public:
 	bool MoveRight();
 	bool MoveDown();
 	bool MoveUp();
-	
+	//외부에서 ICalendDataChanged값을 받아서 m_piCalendDataChanged에 할당한다
+	void SetICalendDataChanged(ICalendDataChanged* piCalendDataChanged);
+	void SetIDiaryDataSearch(IDiaryDataSearch* m_piDiaryDataSearch);
 
 };
 
