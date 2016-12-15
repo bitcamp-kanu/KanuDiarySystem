@@ -133,6 +133,17 @@ string CUtil::GetCurTime(const string& str)
 	return string(s);
 }
 
+void CUtil::GetCurTime(int yyyy,int mm , int dd)
+{
+	struct tm *t;
+	time_t timer;
+	timer = time(NULL);    // 현재 시각을 초 단위로 얻기
+	t = localtime(&timer); // 초 단위의 시간을 분리하여 구조체에 넣기
+
+	yyyy = t->tm_year;
+	mm = t ->tm_mon;
+	dd = t->tm_mday;
+}
 string CUtil::ToDateFormat(string str)
 {
 	string result;
