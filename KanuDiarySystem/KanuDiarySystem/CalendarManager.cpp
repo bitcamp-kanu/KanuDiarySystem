@@ -20,10 +20,10 @@ calendarmanager::calendarmanager()
 	initdata(m_year, m_month);
 	m_piDiaryDataSearch = NULL;
 	m_piCalendDataChanged =NULL;
-	if(m_piDiaryDataSearch !=NULL)
-	{
-	m_piDiaryDataSearch->SearchData
-	}
+	//if(m_piDiaryDataSearch !=NULL)
+	///*{
+	//m_piDiaryDataSearch->SearchData();
+	//}*/
 
 	
 
@@ -150,6 +150,8 @@ bool calendarmanager::MoveRight()
 	m_rgDay[m_nRow][m_nCol].DrawRect();
 
 	m_rgDay[m_nRow][m_nCol].DrawRect();
+	pPOld->DrawRect();
+
 	if(m_piCalendDataChanged != NULL)
 	{
 		m_piCalendDataChanged->DataChanged(pPOld,&m_rgDay[m_nRow][m_nCol]);
@@ -187,6 +189,7 @@ bool calendarmanager::MoveDown()
 	m_rgDay[m_nRow][m_nCol].DrawRect();
 
 	m_rgDay[m_nRow][m_nCol].DrawRect();
+	pPOld->DrawRect();
 	if(m_piCalendDataChanged != NULL)
 	{
 		m_piCalendDataChanged->DataChanged(pPOld,&m_rgDay[m_nRow][m_nCol]);
