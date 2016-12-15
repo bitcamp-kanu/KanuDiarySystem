@@ -20,6 +20,9 @@ private:
 	static string format_arg_list(const char *fmt, va_list args);
 public:
 	static string GetCurTime(const string& str);
+	static string GetCurTime();
+	static void  GetCurTime(int& y,int& m,int& d);
+	static string ToDateFormat(string day);
 	static void clrscr();
 	static void Gotoxy(Point& pt);
 	static void Gotoxy(int x, int y);

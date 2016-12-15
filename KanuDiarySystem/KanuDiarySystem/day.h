@@ -16,7 +16,7 @@ public:
 	int width;
 	string m_strWeek;
 	bool m_isSelect;
-
+	string m_strYYYMMDD;
 	Diary* m_pDiary;
 
 public:

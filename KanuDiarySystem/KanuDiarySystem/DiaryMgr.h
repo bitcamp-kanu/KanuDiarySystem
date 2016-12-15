@@ -13,6 +13,7 @@ class DiaryMgr : public ICalendDataChanged ,public IDiaryDataSearch
 private:
 	eEditMode m_editMode;
 	Diary* m_pCur;
+	Day*   m_pCalenderSelected;
 	string m_strFileName;
 	list<Diary*> m_rgDiary;	
 public:
@@ -29,6 +30,9 @@ public:
 	void Display();
 	bool CreateItemDisplay();
 
+	void DisplayCalender();
+	void DisplayItemList();
+
 	bool InputTitle();
 	bool InputWeather();
 	bool InputFeel();
@@ -39,7 +43,6 @@ public:
 	//수정할 아이템을 설정 한다.
 	Diary* SetModifyItem(string key);
 	Diary* SetNewItem();
-
 
 	int SearchData(string key ,vector<Diary*>& vec);	
 	int DataChanged(Day* before, Day* data);

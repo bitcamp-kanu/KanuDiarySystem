@@ -8,6 +8,7 @@ using namespace std;
 
 DiaryMgr::DiaryMgr(void)
 	:m_editMode(eEDNone)
+	,m_pCalenderSelected(NULL)
 {
 	m_strFileName = "Diary.DB";
 	m_pCur = NULL;
@@ -231,9 +232,10 @@ int DiaryMgr::SearchData(string key ,vector<Diary*>& vec)
 	list<Diary*>::iterator iter;
 	for (iter = m_rgDiary.begin(); iter != m_rgDiary.end(); ++iter)
 	{
-		if((*iter)->GetDay() == key)
+		string test = (*iter)->GetDay().substr(0,8) ;
+		if(test == key)
 		{
-			vec.push_back(new Diary());
+			vec.push_back((*iter));
 		}
 	}
 	return 0;
@@ -241,8 +243,9 @@ int DiaryMgr::SearchData(string key ,vector<Diary*>& vec)
 // 다이어어리 데이터 체인디.
 int DiaryMgr::DataChanged(Day* before, Day* data)
 {
-	Layout::Instance()->SetMessage("다이어리 데이터가 변경 되었습니다.");
-	Layout::Instance()->DisplayMessage();
+	m_pCalenderSelected = data;
+	DisplayCalender();
+	DisplayItemList();
 	return 0;
 }
 
@@ -254,4 +257,62 @@ int DiaryMgr::TextEdit()
 		m_pCur->m_oTextEdit.InputLine();
 	}
 	return 0;
+}
+
+void DiaryMgr::DisplayCalender()
+{
+	if(this->m_pCalenderSelected != NULL)
+	{
+		CUtil::Gotoxy(70,4);
+		cout << m_pCalenderSelected ->m_strYYYMMDD;
+		if( m_pCalenderSelected->m_pDiary != NULL)
+		{
+			int y = 5;
+			CUtil::Gotoxy(71,y++); cout << m_pCalenderSelected->m_pDiary->m_strKey; //yyyyMMddHHMMSS
+			CUtil::Gotoxy(71,y++); cout << m_pCalenderSelected->m_pDiary->m_strTitle;
+			CUtil::Gotoxy(71,y++); cout << m_pCalenderSelected->m_pDiary->m_strDay; //yyyymmdd
+			CUtil::Gotoxy(71,y++); cout << m_pCalenderSelected->m_pDiary->m_strCreateDate; //yyyyMMddHHMMSS
+			CUtil::Gotoxy(71,y++); cout << m_pCalenderSelected->m_pDiary->m_strFleeCode; //3자리.
+			CUtil::Gotoxy(71,y++); cout << m_pCalenderSelected->m_pDiary->m_strWeadtherCode; //3자리.
+			CUtil::Gotoxy(71,y++); cout << m_pCalenderSelected->m_pDiary->m_strDiaryPath;
+			CUtil::Gotoxy(71,y++); cout << m_pCalenderSelected->m_pDiary->m_strWeek; //yyyymmdd
+			
+		}
+		else
+		{
+			int y = 5;
+			CUtil::Gotoxy(70,y++); cout << "                         ";
+			CUtil::Gotoxy(70,y++); cout << "                         ";
+			CUtil::Gotoxy(70,y++); cout << "                         ";
+			CUtil::Gotoxy(70,y++); cout << "                         ";
+			CUtil::Gotoxy(70,y++); cout << "                         ";
+			CUtil::Gotoxy(70,y++); cout << "                         ";
+			CUtil::Gotoxy(70,y++); cout << "                         ";
+			CUtil::Gotoxy(70,y++); cout << "                         ";
+
+		}
+	}
+	
+}
+
+void DiaryMgr::DisplayItemList()
+{
+	int y = 19;
+	if(m_pCalenderSelected != NULL)
+	{
+		string yyyymmdd = m_pCalenderSelected->m_strYYYMMDD;
+		
+		list<Diary*>::iterator iter;
+		for (iter = m_rgDiary.begin(); iter != m_rgDiary.end(); ++iter)
+		{
+			if((*iter)->GetDay().length() >=6 && yyyymmdd.length() >= 6)
+			{
+				string test = (*iter)->GetDay().substr(0,6) ;
+				if(test == yyyymmdd.substr(0,6))
+				{
+					CUtil::Gotoxy(71,y++); cout << (*iter)->GetDay()<< " " << (*iter)->GetTitle();
+				}
+			}
+		}
+	}
 }

@@ -12,30 +12,62 @@
 
 using namespace std;
 
+void DisplayDate(int y , int m)
+{
+	char buff[255];
+	sprintf(buff ,"%04d년 %02d월",y,m);
+	CUtil::Gotoxy(45,1);
+	cout << buff ;
+}
+void NextMonth(int& y , int& m)
+{
+	y = y + m/12;
+	m = m%12 + 1;
+
+}
+void PrevMonth(int& y , int& m)
+{
+	if(m > 1)
+	{
+		m--;
+	}
+	else
+	{
+		y = y - 1;
+		m = 12;
+	}
+}
 int main()
 {	
+	int year = 2016;
+	int month = 11; 
 	bool bReDraw = true;
 	calendarmanager calenderMgr;
 	DiaryMgr diarMgr;
-	diarMgr.AddItem(new Diary(("20161212001"),("첫번재데이터입니다."),("20161201"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161201.DB"),("월요일")));
-	diarMgr.AddItem(new Diary(("20161212002"),("첫번재데이터입니다."),("20161201"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161202.DB"),("월요일")));
-	diarMgr.AddItem(new Diary(("20161212003"),("첫번재데이터입니다."),("20161201"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161203.DB"),("월요일")));
-	diarMgr.AddItem(new Diary(("20161212004"),("첫번재데이터입니다."),("20161201"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161204.DB"),("월요일")));
-	diarMgr.AddItem(new Diary(("20161212005"),("첫번재데이터입니다."),("20161201"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161205.DB"),("월요일")));
-	diarMgr.AddItem(new Diary(("20161212006"),("첫번재데이터입니다."),("20161201"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161206.DB"),("월요일")));
-	diarMgr.AddItem(new Diary(("20161212007"),("첫번재데이터입니다."),("20161201"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161207.DB"),("월요일")));
-	diarMgr.AddItem(new Diary(("20161212008"),("첫번재데이터입니다."),("20161201"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161208.DB"),("월요일")));
-	diarMgr.AddItem(new Diary(("20161212009"),("첫번재데이터입니다."),("20161201"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161209.DB"),("월요일")));
-	diarMgr.AddItem(new Diary(("20161212011"),("첫번재데이터입니다."),("20161201"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161210.DB"),("월요일")));
-	diarMgr.AddItem(new Diary(("20161212012"),("첫번재데이터입니다."),("20161201"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161211.DB"),("월요일")));
-	diarMgr.AddItem(new Diary(("20161212013"),("첫번재데이터입니다."),("20161201"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161212.DB"),("월요일")));
-	diarMgr.AddItem(new Diary(("20161212014"),("첫번재데이터입니다."),("20161201"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161213.DB"),("월요일")));
-	diarMgr.SaveFile();
-	//diarMgr.LoadFile();
-	diarMgr.Display();
-
-	calenderMgr.initdata(2016,12);
+	diarMgr.LoadFile();
+	calenderMgr.SetIDiaryDataSearch(&diarMgr);
+	calenderMgr.SetICalendDataChanged(&diarMgr);
+	calenderMgr.initdata(year,month);
 	calenderMgr.Dispaly();
+	DisplayDate(year,month);
+	//diarMgr.AddItem(new Diary(("20161212001"),("첫번재데이터입니다."),("20161201"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161201.DB"),("월요일")));
+	//diarMgr.AddItem(new Diary(("20161212002"),("첫번재데이터입니다."),("20161202"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161202.DB"),("월요일")));
+	//diarMgr.AddItem(new Diary(("20161212003"),("첫번재데이터입니다."),("20161203"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161203.DB"),("월요일")));
+	//diarMgr.AddItem(new Diary(("20161212004"),("첫번재데이터입니다."),("20161205"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161204.DB"),("월요일")));
+	//diarMgr.AddItem(new Diary(("20161212005"),("첫번재데이터입니다."),("20161206"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161205.DB"),("월요일")));
+	//diarMgr.AddItem(new Diary(("20161212006"),("첫번재데이터입니다."),("20161207"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161206.DB"),("월요일")));
+	//diarMgr.AddItem(new Diary(("20161212007"),("첫번재데이터입니다."),("20161211"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161207.DB"),("월요일")));
+	//diarMgr.AddItem(new Diary(("20161212008"),("첫번재데이터입니다."),("20161212"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161208.DB"),("월요일")));
+	//diarMgr.AddItem(new Diary(("20161212009"),("첫번재데이터입니다."),("20161218"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161209.DB"),("월요일")));
+	//diarMgr.AddItem(new Diary(("20161212011"),("첫번재데이터입니다."),("20161221"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161210.DB"),("월요일")));
+	//diarMgr.AddItem(new Diary(("20161212012"),("첫번재데이터입니다."),("20161227"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161211.DB"),("월요일")));
+	//diarMgr.AddItem(new Diary(("20161212013"),("첫번재데이터입니다."),("20161230"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161212.DB"),("월요일")));
+	//diarMgr.AddItem(new Diary(("20161212014"),("첫번재데이터입니다."),("20161102"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161213.DB"),("월요일")));
+	//diarMgr.SaveFile();
+	//diarMgr.LoadFile();
+	//diarMgr.Display();
+
+	
 	//	mgr.Dispaly(); 
 	//	mgr.initdata(2016, 12)
 	//	mgr.Dispaly(); 
@@ -73,6 +105,9 @@ int main()
 				Layout::Instance()->DrawToDay();
 				calenderMgr.Dispaly();
 				Layout::Instance()->DisplayMenuCalendarSelect();
+				DisplayDate(year,month);
+				diarMgr.DisplayCalender();
+				diarMgr.DisplayItemList();
 				break;
 			case eLayOut::eLODairy:
 				system("cls");
@@ -134,10 +169,22 @@ int main()
 				bReDraw = false;
 			}
 			break;
+		case ePUP:
+			if(curLayOut == eLOCalendar)
+			{
+				NextMonth(year,month);
+				calenderMgr.initdata(year,month);
+				DisplayDate(year,month);
+				//bReDraw = false;
+			}
+			break;
 		case ePDOWN:		//= 0x49, //Icase ePDOWN:		//= 0x51,  //Q
 			if(curLayOut == eLOCalendar)
 			{
-				calenderMgr.MoveDown();
+				PrevMonth(year,month);
+				calenderMgr.initdata(year,month);
+				DisplayDate(year,month);
+				//bReDraw = false;
 			}
 			break;
 		case eDDetail:	//= 'D', //다이어리 상세보기

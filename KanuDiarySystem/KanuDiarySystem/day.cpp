@@ -41,7 +41,7 @@ void Day::DrawRect(int x, int y , bool isOffsest)
 	Rect rect(m_nX,m_mY,width,height);
 	
 	Display::DrawRect(rect);
-	//CUtil::Gotoxy(x + 1, y + 1);
+	CUtil::Gotoxy(x + 1, y + 1);
 	CUtil::Gotoxy(m_nX+ 1, m_mY+ 1);
 
 	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -75,11 +75,11 @@ void Day::DrawRect(int x, int y , bool isOffsest)
 		{
 			if(this->m_pDiary!=NULL)
 			{
-				cout << m_day<<"¡Ú";
+				cout <<m_day<<"¡Ú";
 			}
 			else
 			{
-				cout << m_day;
+				cout << m_day<"  ";
 			}
 			
 		}

@@ -7,10 +7,10 @@ class Diary
 public:
 	bool m_isSave;
 	TextEditer m_oTextEdit;
-private:
+public:
 	char m_strKey[20]; //yyyyMMddHHMMSS
 	char m_strTitle[100];
-	char m_strDay[8]; //yyyymmdd
+	char m_strDay[9]; //yyyymmdd
 	char m_strCreateDate[15]; //yyyyMMddHHMMSS
 	char m_strFleeCode[100]; //3자리.
 	char m_strWeadtherCode[100]; //3자리.
