@@ -7,6 +7,7 @@
 #include "CodeItem.h"
 #include <vector>
 #include <string>
+#include "day.h"
 using namespace std;
 
 //class Code;
@@ -16,6 +17,24 @@ class ICodeListSearch
 public:
 	//날씨 or 기분
 	virtual int GetCodeData(string mainCode, vector<Code*>& vec) = 0;
+	
+};
 
+//class Code;
+//달력 에서 데이터가 변경 되었을때 CallBack 로 전달할 인터퍼이스.
+class ICalendDataChanged
+{
+public:
+	//날씨 or 기분
+	virtual int DataChanged(Day* before, Day* data) = 0;
+};
+
+//class Code;
+//달력 에서 데이터가 변경 되었을때 CallBack 로 전달할 인터퍼이스.
+class IDiaryDataSearch
+{
+public:
+	//날씨 or 기분
+	virtual int DataChanged(Day* before, Day* data) = 0;
 };
 #endif

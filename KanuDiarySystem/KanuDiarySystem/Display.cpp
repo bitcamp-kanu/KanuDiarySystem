@@ -60,3 +60,41 @@ void Display::DrawRect(Rect& rect)
 	newPt = rect.GetStaPos() + Point(rect.GetWidth()-1,0);
 	Display::DrawYLine(newPt,rect.GetHeigth());
 }
+
+char Display::IsSaveMenu(int x,int y)
+{
+	//char buff[255] = {0};
+	int key = 0;
+	while(true)
+	{
+		CUtil::Gotoxy(x,y);
+		cout << "                                                         ";
+		CUtil::Gotoxy(x,y);
+		cout << "저장 하시겠습니까. 저장(Y) 취소(C) 다시입력(N)";		
+		key = getch();
+		if(toupper(key) == 'Y' || toupper(key) == 'C' || toupper(key) == 'N')
+		{
+			CUtil::Gotoxy(x,y);
+			cout << "                                                              "; //지정된 데이터를 삭제 하나,
+			break;
+		}
+	}
+	return toupper(key);
+}
+char Display::IsSelectMenu(int x,int y)
+{
+	int key = 0;
+	while(true)
+	{		
+		CUtil::Gotoxy(x,y);
+		key = getch();
+		if(toupper(key) == 'Y' || toupper(key) == 'C' || toupper(key) == 'N')
+		{
+			CUtil::Gotoxy(x,y);
+			cout << "                                                              "; //지정된 데이터를 삭제 하나,
+			break;
+		}
+	}
+	return toupper(key);
+}
+

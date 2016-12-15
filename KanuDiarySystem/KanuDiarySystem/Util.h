@@ -31,6 +31,8 @@ public:
 	//string 를 구분자를 통해서 불리 한다.
 	static void Tokenize(const string& str,vector<string>& tokens,const string& delimiters = " ");
 	static string GetWeek();
+	//"YYYYMMDD" 형식의 str 을 YYYY-MM-DD 형식으로 변경 한다.
+	static string ToDateFormat(string str);
 	
 	//static string GetCurrentTime(int a);
 	

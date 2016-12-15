@@ -133,6 +133,36 @@ string CUtil::GetCurTime(const string& str)
 	return string(s);
 }
 
+string CUtil::ToDateFormat(string str)
+{
+	string result;
+	string year;
+	string month;
+	string day;
+	string hh;
+	string mm;
+	if(str.length() == 8)
+	{
+		year = str.substr(0,4);
+		month = str.substr(4,2);
+		day = str.substr(6,2);
+		result = year+"-"+month+ "-"+ day;
+	}
+	else if(str.length() == 12)
+	{
+		year = str.substr(0,4);
+		month = str.substr(4,2);
+		day = str.substr(6,2);
+		hh  = str.substr(8,2);
+		mm = str.substr(10,2);
+		result = year+"-"+month+ "-"+ day + " " +hh+ ":" + mm;
+	}
+	else
+	{
+		result = str;
+	}
+	return result;
+}
 string CUtil::GetWeek()
 {
 	string week[] = { "일", "월", "화", "수", "목", "금", "토" };

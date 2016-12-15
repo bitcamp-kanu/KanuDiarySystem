@@ -81,8 +81,6 @@ void Layout::DisplayMenuSchedulerSelect(int x /*= 3 1 + 2*/, int y /*= 33*/)
 }
 void Layout::DisplayMenuDialySelect(int x /*= 3 1 + 2*/, int y /*= 1*/)
 {
-	
-
 	CUtil::Gotoxy(x,y);
 	cout << "신규(C) 수정(U) 삭제(D) 뒤로(B) 저장.(S)" << endl; 
 }
@@ -118,6 +116,8 @@ eKeyCode Layout::InputMenu(Point pt)
 		case eBACK:		//= 'B', //뒤로.
 		case eQuit:		//= 'Q'
 		case eSAVE:		//= 'S'
+		case eDEidt:	//'E'데이터입력 (다이어리입력 창에서사용.)
+		case eDTxtEdit: //'T'다이어리 편집.			
 			eMenu = (eKeyCode)key;
 			break;
 		default:
@@ -125,4 +125,14 @@ eKeyCode Layout::InputMenu(Point pt)
 		}
 	}
 	return eMenu;
+}
+
+void Layout::SetMessage(string str)
+{
+	m_strMessage = str;
+}
+void Layout::DisplayMessage(int x/* = 36 1 + 2*/, int y/* = 1*/)
+{
+	CUtil::Gotoxy(x,y);
+	cout << m_strMessage;
 }

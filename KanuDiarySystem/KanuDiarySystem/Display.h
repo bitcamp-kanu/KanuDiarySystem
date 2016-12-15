@@ -108,4 +108,7 @@ public:
 	void static DrawRect(Point& pt , Point& pt2);
 	void static DrawXLine(Point& pt1 , int len);	
 	void static DrawYLine(Point& pt1 , int len);
+
+	char static IsSaveMenu(int x,int y);
+	char static IsSelectMenu(int x,int y);
 };

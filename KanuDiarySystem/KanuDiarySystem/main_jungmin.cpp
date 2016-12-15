@@ -63,7 +63,7 @@ int main()
 			case eLayOut::eLODairy:
 				system("cls");
 				Layout::Instance()->DrawCase2();
-				if(selectMenu == eDCreate)
+				if(diarMgr.GetEditMode() == eEDCrate)
 				{
 					diarMgr.CreateItemDisplay();
 				}
@@ -83,9 +83,6 @@ int main()
 			}
 		}
 		bReDraw = true;
-
-
-
 
 		selectMenu = Layout::Instance()->InputMenu(Point(3,33));
 		CUtil::Gotoxy(0,50);
@@ -132,7 +129,8 @@ int main()
 		case eDDetail:	//= 'D', //다이어리 상세보기
 			if(curLayOut == eLOCalendar)
 			{
-				curLayOut = eLODairy;				 
+				curLayOut = eLODairy;	
+				diarMgr.SetEditMode(eEDDisplay);
 				cout << "다이어리::상세보기(eDDetail)" << endl;
 			}
 			else if(curLayOut == eLOSchedule)
@@ -145,6 +143,7 @@ int main()
 			{
 				curLayOut = eLODairy;	
 				diarMgr.SetNewItem();
+				diarMgr.SetEditMode(eEDCrate);
 				
 			}
 			else if(curLayOut == eLOSchedule)
@@ -155,9 +154,10 @@ int main()
 		case eUpdate:	//= 'U', //다이어리 수정.
 			if(curLayOut == eLOCalendar)
 			{
+				curLayOut = eLODairy;		
 				//달력에서 가저온 키값을 설정 한다/
 				diarMgr.SetModifyItem("작업중");
-				curLayOut = eLODairy;		
+				diarMgr.SetEditMode(eEDUpeate); //수정
 				
 			}
 			else if(curLayOut == eLOSchedule)
@@ -179,8 +179,18 @@ int main()
 		case eSAVE:
 			if(curLayOut == eLODairy)
 			{
-				//저장 한다.
+				diarMgr.SaveData();
+				bReDraw = false;
 			}
+			break;
+		case eDEidt: //데이터입력 (다이어리입력 창에서사용.)
+			if(curLayOut == eLODairy)
+			{
+				diarMgr.InputData();
+				bReDraw = false;
+			}
+			break;
+		case eDTxtEdit: //다이어리 편집.			
 			break;
 		case eQuit://= 'X'
 			cout << "                            ";

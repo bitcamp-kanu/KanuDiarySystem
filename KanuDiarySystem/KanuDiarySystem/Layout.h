@@ -19,7 +19,10 @@ enum eKeyCode
 	eSchedule	= 'A', //다이어리 수정.
 	eBACK		= 'B', //뒤로
 	eSAVE		= 'S', //저장
-	eQuit		= 'X'
+	eQuit		= 'X',
+	eDEidt		= 'E', //데이터입력 (다이어리입력 창에서사용.)
+	eDTxtEdit	= 'T', //다이어리 편집.
+	//eDSave		= 'S', //다이어리 저장
 };
 
 enum eLayOut
@@ -32,6 +35,7 @@ enum eLayOut
 class Layout
 {
 private:
+	string m_strMessage;
 	Rect m_ret;//(0,0,100,39);
 	Rect m_ret1;//(0,0,100,3);
 	Rect m_ret2;//(0,2,70,31);
@@ -69,6 +73,8 @@ public:
 	void DisplayMenuSchedulerSelect(int x = 3 /*1 + 2*/, int y = 33);
 	void DisplayMenuDialySelect(int x = 3 /*1 + 2*/, int y = 1);
 
+	void SetMessage(string str);
+	void DisplayMessage(int x = 36 /*1 + 2*/, int y = 1);
 
 	//키값을 입력 받아서 메뉴 코드로 변환 한다.
 	//pt는 포인터 위치.
