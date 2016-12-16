@@ -7,6 +7,7 @@ class Diary
 public:
 	bool m_isSave;
 	TextEditer m_oTextEdit;
+	bool m_isbLoad; //TextEdit 값을 로그 했으먄.
 public:
 	char m_strKey[20]; //yyyyMMddHHMMSS
 	char m_strTitle[100];
@@ -37,6 +38,8 @@ public:
 
 	bool MakeFile(); //파일을 생성 한다.
 	bool SaveTextContent(); //Text Content 를 저장 한다.
+
+	bool LoadTextEditer();
 
 	bool ValidData();
 

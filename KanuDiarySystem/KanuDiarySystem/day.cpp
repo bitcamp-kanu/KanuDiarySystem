@@ -76,11 +76,20 @@ void Day::DrawRect(int x, int y , bool isOffsest)
 		{
 			if(this->m_pDiary!=NULL)
 			{
-				cout <<m_day<<"¡Ú";
+				//Rect newRect(rect.GetX() + 1,rect.GetY() + 1,rect.GetWidth()-2,rect.GetHeigth()-1);
+				//Display::DrawFillRect(rect.InnerRect(),_COL_DIARY_);
+				//CUtil::Gotoxy(rect.GetX(),rect.GetY());
+				//Display::DrawFillRect(rect.InnerRect(),_COL_DIARY_);
+				//CUtil::textcolor(_COL_DIARY_);
+				cout <<m_day << "¡Ú"; 
+				CUtil::textcolor();
 			}
 			else
 			{
-				cout << m_day<"  ";
+				//Display::DrawFillRect(rect.InnerRect(),_COL_DEFAULT_);
+				//CUtil::Gotoxy(rect.GetX(),rect.GetY());
+				//CUtil::textcolor();
+				cout << m_day;
 			}
 			
 		}

@@ -222,7 +222,7 @@ bool calendarmanager::MoveLeft()
 	pPOld = &m_rgDay[m_nRow][m_nCol];
 	if(m_rgDay[m_nRow][m_nCol-1].m_day == 0 && m_nCol >= (0+1))
 	{
-		Layout::Instance()->SetMessage("이동할수 있는 위치가 아닙니다.");
+		Layout::Instance()->DisplayMessage(_COL_ERROR_);
 		Layout::Instance()->DisplayMessage();
 		return false;
 	}
@@ -247,7 +247,7 @@ bool calendarmanager::MoveRight()
 	if(m_rgDay[m_nRow][m_nCol+1].m_day == 0 && m_nCol >= (6-1))
 	{
 		Layout::Instance()->SetMessage("이동할수 있는 위치가 아닙니다.");
-		Layout::Instance()->DisplayMessage();
+		Layout::Instance()->DisplayMessage(_COL_ERROR_);
 		return false;
 	}
 
@@ -270,10 +270,10 @@ bool calendarmanager::MoveUp()
 	
 	Day* pPOld = NULL;
 	pPOld = &m_rgDay[m_nRow][m_nCol];
-	if(m_rgDay[m_nRow-1][m_nCol].m_day == 0 && m_nRow >= (0+1))
+	if(m_rgDay[m_nRow-1][m_nCol].m_day == 0 || m_nRow <= (0+1)) //&& || 로 변경
 	{
 		Layout::Instance()->SetMessage("이동할수 있는 위치가 아닙니다.");
-		Layout::Instance()->DisplayMessage();
+		Layout::Instance()->DisplayMessage(_COL_ERROR_);
 		return false;
 	}
 	char buff[1024];
@@ -300,10 +300,10 @@ bool calendarmanager::MoveDown()
 {
 	Day* pPOld = NULL;
 	pPOld = &m_rgDay[m_nRow][m_nCol];
-	if(m_rgDay[m_nRow+1][m_nCol].m_day == 0 && m_nRow >= (6-1))
+	if(m_rgDay[m_nRow+1][m_nCol].m_day == 0 || m_nRow >= (6-1)) //&& || 변경
 	{
 		Layout::Instance()->SetMessage("이동할수 있는 위치가 아닙니다.");
-		Layout::Instance()->DisplayMessage();
+		Layout::Instance()->DisplayMessage(_COL_ERROR_);
  		return false;
 	}
 	char buff[1024];

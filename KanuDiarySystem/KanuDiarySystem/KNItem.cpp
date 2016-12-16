@@ -63,6 +63,17 @@ void TextEditer::GetDataAll(vector<string>& vec)
 	} // while-end
 }
 
+void TextEditer::AddLine(string str)
+{
+	Item* P = new Item();
+	P->m_strContents = str;
+	m_list.AddTail(P);
+}
+int  TextEditer::GetCount()
+{
+	
+	return m_list.GetCount();
+}
 
 /*
 class TextEditer

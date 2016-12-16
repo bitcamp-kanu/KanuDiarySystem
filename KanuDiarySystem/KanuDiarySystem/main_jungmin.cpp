@@ -16,8 +16,8 @@ using namespace std;
 void DisplayDate(int y , int m)
 {
 	char buff[255];
-	sprintf(buff ,"%04d년 %02d월",y,m);
-	CUtil::Gotoxy(45,1);
+	sprintf(buff ,"[%04d년 %02d월]",y,m);
+	CUtil::Gotoxy(43,1);
 	cout << buff ;
 }
 void NextMonth(int& y , int& m)
@@ -40,8 +40,11 @@ void PrevMonth(int& y , int& m)
 }
 int main()
 {	
+	system("mode con:cols=100 lines=42");
+
 	int year = 2016;
 	int month = 11; 
+	bool bSkipMenuInput = false; //명령어 입력 루틴은 건너 뛴다.
 	bool bReDraw = true;
 	calendarmanager calenderMgr;
 	ScheduleMgr scheduleMgr;
@@ -55,43 +58,6 @@ int main()
 	calenderMgr.initdata(year,month);
 	calenderMgr.Dispaly();
 	DisplayDate(year,month);
-	//diarMgr.AddItem(new Diary(("20161212001"),("첫번재데이터입니다."),("20161201"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161201.DB"),("월요일")));
-	//diarMgr.AddItem(new Diary(("20161212002"),("첫번재데이터입니다."),("20161202"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161202.DB"),("월요일")));
-	//diarMgr.AddItem(new Diary(("20161212003"),("첫번재데이터입니다."),("20161203"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161203.DB"),("월요일")));
-	//diarMgr.AddItem(new Diary(("20161212004"),("첫번재데이터입니다."),("20161205"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161204.DB"),("월요일")));
-	//diarMgr.AddItem(new Diary(("20161212005"),("첫번재데이터입니다."),("20161206"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161205.DB"),("월요일")));
-	//diarMgr.AddItem(new Diary(("20161212006"),("첫번재데이터입니다."),("20161207"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161206.DB"),("월요일")));
-	//diarMgr.AddItem(new Diary(("20161212007"),("첫번재데이터입니다."),("20161211"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161207.DB"),("월요일")));
-	//diarMgr.AddItem(new Diary(("20161212008"),("첫번재데이터입니다."),("20161212"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161208.DB"),("월요일")));
-	//diarMgr.AddItem(new Diary(("20161212009"),("첫번재데이터입니다."),("20161218"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161209.DB"),("월요일")));
-	//diarMgr.AddItem(new Diary(("20161212011"),("첫번재데이터입니다."),("20161221"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161210.DB"),("월요일")));
-	//diarMgr.AddItem(new Diary(("20161212012"),("첫번재데이터입니다."),("20161227"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161211.DB"),("월요일")));
-	//diarMgr.AddItem(new Diary(("20161212013"),("첫번재데이터입니다."),("20161230"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161212.DB"),("월요일")));
-	//diarMgr.AddItem(new Diary(("20161212014"),("첫번재데이터입니다."),("20161102"),("20161201121212"),("기분 1 입니다."),("날씨 1 입니다."),("c:\\Kanu\\20161213.DB"),("월요일")));
-	//diarMgr.SaveFile();
-	//diarMgr.LoadFile();
-	//diarMgr.Display();
-
-	
-	//	mgr.Dispaly(); 
-	//	mgr.initdata(2016, 12)
-	//	mgr.Dispaly(); 
-	//	mgr.initdata(2016, 12);
-	/*
-	mgr.AddItem(new Diary("key1","Title","Day","CreateDate","FleeCode","Path"));
-	mgr.AddItem(new Diary("key2","Title","Day","CreateDate","FleeCode","Path"));
-	mgr.AddItem(new Diary("key3","Title","Day","CreateDate","FleeCode","Path"));
-	mgr.AddItem(new Diary("key4","Title","Day","CreateDate","FleeCode","Path"));
-	mgr.AddItem(new Diary("key5","Title","Day","CreateDate","FleeCode","Path"));
-	mgr.AddItem(new Diary("key6","Title","Day","CreateDate","FleeCode","Path"));
-	mgr.AddItem(new Diary("key7","Title","Day","CreateDate","FleeCode","Path"));
-	mgr.AddItem(new Diary("key8","Title","Day","CreateDate","FleeCode","Path"));
-	mgr.AddItem(new Diary("key9","Title","Day","CreateDate","FleeCode","Path"));
-	mgr.AddItem(new Diary("key10","Title","Day","CreateDate","FleeCode","Path"));
-	mgr.AddItem(new Diary("key11","Title","Day","CreateDate","FleeCode","Path"));
-	mgr.AddItem(new Diary("key12","Title","Day","CreateDate","FleeCode","Path"));
-	mgr.SaveFile();
-	*/
 
 	CUtil::setcursortype(CURSOR_TYPE::NOCURSOR); //커서를 표시 하지 않는다.
 	eKeyCode selectMenu = eKeyCode::eNone;
@@ -112,35 +78,50 @@ int main()
 				Layout::Instance()->DisplayMenuCalendarSelect();
 				DisplayDate(year,month);
 				diarMgr.DisplayCalender();
-				diarMgr.DisplayItemList();
+				//diarMgr.DisplayItemList();
+				scheduleMgr.showMainSC();
+				
+				Layout::Instance()->DisplayMessage();
 				break;
 			case eLayOut::eLODairy:
 				system("cls");
 				Layout::Instance()->DrawCase2();
-				if(diarMgr.GetEditMode() == eEDCrate)
+				switch(diarMgr.GetEditMode() )
 				{
+				case eEDCrate: //신규 생성이면
 					diarMgr.CreateItemDisplay();
+					break;
+				case eEDUpeate: //수정이면
+				case eEDDisplay:
+					diarMgr.CreateItemDisplay();
+					break;
 				}
-				else if(selectMenu == eDDetail && selectMenu == eUpdate) // 수정 하고 상세는 같다.
-				{
-
-				}
-
 				//Layout::Instance()->DrawToDay();
+				Layout::Instance()->DisplayMessage();
 				break;
-			case eLayOut::eLOSchedule:
+			case eLayOut::eLOSchedule: 
 				system("cls");
 				system("mode con:cols=100 lines=42");
 				//Layout::Instance()->DrawCase3();
 				//Layout::Instance()->DrawToDay();
 				//Layout::Instance()->DisplayMenuSchedulerSelect();
 				scheduleMgr.ListShowSC();
+				bSkipMenuInput = true;
+				system("cls");
+				curLayOut = eLOCalendar;
+				Layout::Instance()->DisplayMessage();
 				break;
 			}
 		}
 		bReDraw = true;
-
-		selectMenu = Layout::Instance()->InputMenu(Point(3,33));
+		if(!bSkipMenuInput)
+		{
+			selectMenu = Layout::Instance()->InputMenu(Point(3,33));			
+		}
+		bSkipMenuInput = false;
+		
+		
+	
 		CUtil::Gotoxy(0,50);
 		switch(selectMenu)
 		{
@@ -209,24 +190,44 @@ int main()
 		case eDCreate:	//= 'C', //다이어리 생성
 			if(curLayOut == eLOCalendar)
 			{
-				curLayOut = eLODairy;	
-				diarMgr.SetNewItem();
-				diarMgr.SetEditMode(eEDCrate);
-				
-			}
-			else if(curLayOut == eLOSchedule)
-			{
-				//cout << "스케줄::새로만들기(eDCreate)" << endl;
+				Day* pDay = calenderMgr.GetSelectDay();
+				if(pDay->m_pDiary  == NULL)
+				{
+					curLayOut = eLODairy;	
+					diarMgr.SetNewItem();
+					diarMgr.SetEditMode(eEDCrate);
+				}
+				else
+				{
+					Layout::Instance()->SetMessage("등록된 일정 데이터가 있습니다.");
+					Layout::Instance()->DisplayMessage();
+				}
 			}
 			break;
 		case eUpdate:	//= 'U', //다이어리 수정.
 			if(curLayOut == eLOCalendar)
 			{
-				curLayOut = eLODairy;		
-				//달력에서 가저온 키값을 설정 한다/
-				diarMgr.SetModifyItem("작업중");
-				diarMgr.SetEditMode(eEDUpeate); //수정
-				
+				Day* pDay = calenderMgr.GetSelectDay();
+				if(pDay->m_pDiary != NULL)
+				{
+					curLayOut = eLODairy;		
+					//달력에서 가저온 키값을 설정 한다/
+					if(diarMgr.SetModifyItem(pDay->m_pDiary->GetKey()) != NULL)
+					{
+						diarMgr.SetEditMode(eEDUpeate); //수정
+					}
+					else
+					{
+						Layout::Instance()->SetMessage("일치하는 정보 값이 없습니다.");
+						Layout::Instance()->DisplayMessage();
+					}
+					
+				}
+				else
+				{
+					Layout::Instance()->SetMessage("수정할 일정이 없습니다.");
+					Layout::Instance()->DisplayMessage();
+				}
 			}
 			else if(curLayOut == eLOSchedule)
 			{
@@ -273,6 +274,83 @@ int main()
 			cout << "eQuit";
 			break;
 		}
+		selectMenu = eNone; //명령어를 사용했으면 값을 초기화 한다.
 	}
 	system("pause");
+
+	return 0;
 }
+
+
+//#include <windows.h>
+//#include <stdio.h>
+//
+//int main( void )
+//{
+//	HANDLE hStdout; 
+//	CONSOLE_SCREEN_BUFFER_INFO csbiInfo; 
+//	SMALL_RECT srctScrollRect, srctClipRect; 
+//	CHAR_INFO chiFill; 
+//	COORD coordDest; 
+//	int i;
+//
+//	printf("\nPrinting 20 lines for reference. ");
+//	printf("Notice that line 6 is discarded during scrolling.\n");
+//	for(i=0; i<=20; i++)
+//		printf("%d\n", i);
+//
+//	hStdout = GetStdHandle(STD_OUTPUT_HANDLE); 
+//
+//	if (hStdout == INVALID_HANDLE_VALUE) 
+//	{
+//		printf("GetStdHandle failed with %d\n", GetLastError()); 
+//		return 1;
+//	}
+//
+//	// Get the screen buffer size. 
+//
+//	if (!GetConsoleScreenBufferInfo(hStdout, &csbiInfo)) 
+//	{
+//		printf("GetConsoleScreenBufferInfo failed %d\n", GetLastError()); 
+//		return 1;
+//	}
+//
+//	// The scrolling rectangle is the bottom 15 rows of the 
+//	// screen buffer. 
+//
+//	srctScrollRect.Top = csbiInfo.dwSize.Y - 16; 
+//	srctScrollRect.Bottom = csbiInfo.dwSize.Y - 1; 
+//	srctScrollRect.Left = 0; 
+//	srctScrollRect.Right = csbiInfo.dwSize.X - 1; 
+//
+//	// The destination for the scroll rectangle is one row up. 
+//
+//	coordDest.X = 0; 
+//	coordDest.Y = csbiInfo.dwSize.Y - 17; 
+//
+//	// The clipping rectangle is the same as the scrolling rectangle. 
+//	// The destination row is left unchanged. 
+//
+//	srctClipRect = srctScrollRect; 
+//
+//	// Fill the bottom row with green blanks. 
+//
+//	chiFill.Attributes = BACKGROUND_GREEN | FOREGROUND_RED; 
+//	chiFill.Char.AsciiChar = (char)' '; 
+//
+//	// Scroll up one line. 
+//
+//	if(!ScrollConsoleScreenBuffer(  
+//		hStdout,         // screen buffer handle 
+//		&srctScrollRect, // scrolling rectangle 
+//		&srctClipRect,   // clipping rectangle 
+//		coordDest,       // top left destination cell 
+//		&chiFill))       // fill character and color
+//	{
+//		printf("ScrollConsoleScreenBuffer failed %d\n", GetLastError()); 
+//		return 1;
+//	}
+//
+//	system("pause");
+//	return 0;
+//}

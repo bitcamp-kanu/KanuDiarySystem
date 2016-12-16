@@ -63,6 +63,7 @@ public:
 	void top_menu_off2();
 	// 오른쪽 패턴무늬
 	void DecoRight();
+	void showMainSC();
 };
 
 void textcolor(int color_number);;

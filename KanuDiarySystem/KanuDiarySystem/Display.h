@@ -7,6 +7,8 @@
 #include <string>
 #include <vector>
 #include "KNFile.h"
+//#include "Util.h"
+#include "base.h"
 using namespace std;
 
 class Point
@@ -96,6 +98,11 @@ public:
 	{
 		return Point(m_nX,m_nY);
 	}
+
+	Rect InnerRect() //사방으로 1직 작은 사각형 반환
+	{
+		return Rect(m_nX + 1,m_nY + 1,m_nWidth - 2,m_nWidth - 2);
+	}
 };
 
 
@@ -105,6 +112,8 @@ private:
 	static char m_cKey;
 public:
 	void static DrawRect(Rect& rect);
+	
+	void static DrawFillRect(Rect& rect ,int fillColor = _COL_BACK_);
 	void static DrawRect(Point& pt , Point& pt2);
 	void static DrawXLine(Point& pt1 , int len);	
 	void static DrawYLine(Point& pt1 , int len);

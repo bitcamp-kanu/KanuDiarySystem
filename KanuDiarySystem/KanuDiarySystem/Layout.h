@@ -74,7 +74,7 @@ public:
 	void DisplayMenuDialySelect(int x = 3 /*1 + 2*/, int y = 1);
 
 	void SetMessage(string str);
-	void DisplayMessage(int x = 1 /*1 + 2*/, int y = 36);
+	void DisplayMessage(int txtcol = 7,int x = 1 /*1 + 2*/, int y = 36);
 
 	//키값을 입력 받아서 메뉴 코드로 변환 한다.
 	//pt는 포인터 위치.

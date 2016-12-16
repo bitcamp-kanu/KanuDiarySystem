@@ -36,9 +36,5 @@ public:
 	void SetIDiaryDataSearch(IDiaryDataSearch* m_piDiaryDataSearch);
 
 	Day* GetSelectDay();
-
-
-
-
 };
 

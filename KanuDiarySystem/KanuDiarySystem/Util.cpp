@@ -217,3 +217,10 @@ string CUtil::format_arg_list(const char *fmt, va_list args)
 	delete [] buffer;
 	return s;
 }
+
+void CUtil::textcolor(int color_number)
+{
+	/*
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),color_number);
+	*/
+}

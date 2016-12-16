@@ -402,10 +402,10 @@ int ScheduleMgr::move(int NowNum)
 		++NowNum; 
 		break;
 	case 'm':
+	case 'M':
+		return key;
 		// 돌아가기
-
 		break;
-
 	case 'i':
 		// 삽입
 		InsertShowSC();
@@ -417,7 +417,6 @@ int ScheduleMgr::move(int NowNum)
 		ListShowSC();
 		// 삭제
 		break;
-
 	case 'a':
 		// 수정
 
@@ -442,6 +441,10 @@ void ScheduleMgr::ListShowSC()
 	while(1)
 	{
 		NowNum = move(NowNum);
+		if(toupper((char)NowNum) == 'M') //M 명령어가 들오 오면 종료 시킨다.
+		{
+			break;
+		}
 	}
 }
 void ScheduleMgr::InsertShowSC()
@@ -499,8 +502,22 @@ void ScheduleMgr::showMainData(vector<Schedule>&p, int NowNum)
 	cout << "내용 : ";
 	cout << p[NowNum].text << endl;
 }
-
+void ScheduleMgr::showMainSC()
+{
+	int y = 19;
+	vector<Schedule> ppp;
+	ReadInfo(ppp);	
+	//for(int i=0;(i<(ppp.size()) && i > 8);i++) //8개 까지 표시한다고생각 하고 수정 하였음.
+	CUtil::Gotoxy(71,y++); printf("[%-10s][%-14s]","  날  자","   제  목");
+	for(int i=0;i < ((ppp.size() > 8) ? 8:ppp.size()) ;i++)
+	{	
+		textcolor(FOREGROUND_GREEN);	
+		CUtil::Gotoxy(71,y++); printf("[%-10s] %s",ppp[i].date,ppp[i].subject);
+		textcolor(7);	
+	}
+}
 void textcolor(int color_number)
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),color_number);
 }
+

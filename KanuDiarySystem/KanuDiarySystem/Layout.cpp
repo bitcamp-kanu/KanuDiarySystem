@@ -34,6 +34,7 @@ void Layout::InitLayOut()
 }
 void Layout::DrawCase1()
 {
+	CUtil::textcolor();
 	Display::DrawRect(m_ret);
 	Display::DrawRect(m_ret1);
 	Display::DrawRect(m_ret2);
@@ -45,6 +46,7 @@ void Layout::DrawCase1()
 }
 void Layout::DrawCase2()
 {
+	CUtil::textcolor();
 	Display::DrawRect(m_ret00);
 	Display::DrawRect(m_ret11);
 	Display::DrawRect(m_ret22);
@@ -52,6 +54,7 @@ void Layout::DrawCase2()
 }
 void Layout::DrawCase3()
 {
+	CUtil::textcolor();
 	Display::DrawRect(m_ret);
 	Display::DrawRect(m_ret1);
 	Display::DrawRect(m_ret2);
@@ -65,24 +68,24 @@ void Layout::DrawCase3()
 void Layout::DrawToDay(int x /*= 3 1 + 2*/, int y /*= 1*/)
 {
 	CUtil::Gotoxy(x,y);
-	cout << CUtil::GetCurTime("YYYYMMDD") << " "<<CUtil::GetWeek();
+	cout << CUtil::ToDateFormat(CUtil::GetCurTime("YYYYMMDD")) << " "<<CUtil::GetWeek();
 }
 void Layout::DisplayMenuCalendarSelect(int x /*= 3 1 + 2*/, int y /*= 33*/)
 {
 	CUtil::Gotoxy(x,y);
-	cout << "방향키(← → ↑ ↓)   신규(C) 상세(D) 수정(U)         스케줄관리(A)";
+	cout << "[←][→][↑][↓]방향키 [C]신규 [D]상세 [U]수정";CUtil::Gotoxy(x+60,y);cout <<"[A]스케줄관리";
 }
 
 
 void Layout::DisplayMenuSchedulerSelect(int x /*= 3 1 + 2*/, int y /*= 33*/)
 {
 	CUtil::Gotoxy(x,y);
-	cout << "신규(C) 수정(U) 전체목록(R)  삭제(D)  닫기(B)" << endl; 
+	cout << "[C]신규 [U]수정 [R]전체목록 [D]삭제 [B]닫기" << endl; 
 }
 void Layout::DisplayMenuDialySelect(int x /*= 3 1 + 2*/, int y /*= 1*/)
 {
 	CUtil::Gotoxy(x,y);
-	cout << "신규(C) 수정(U) 삭제(D) 뒤로(B) 저장.(S)" << endl; 
+	cout << "[C]신규 [U]수정 [D]삭제 [B]뒤로 [S]저장" << endl; 
 }
 
 eKeyCode Layout::InputMenu(Point pt)
@@ -131,8 +134,10 @@ void Layout::SetMessage(string str)
 {
 	m_strMessage = str;
 }
-void Layout::DisplayMessage(int x/* = 36 1 + 2*/, int y/* = 1*/)
+void Layout::DisplayMessage(int txtcol , int x/* = 36 1 + 2*/, int y/* = 1*/)
 {
+	//CUtil::textcolor(txtcol);
 	CUtil::Gotoxy(x,y);
 	cout << m_strMessage;
+	//CUtil::textcolor();
 }

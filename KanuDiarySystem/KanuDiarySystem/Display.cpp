@@ -61,6 +61,28 @@ void Display::DrawRect(Rect& rect)
 	Display::DrawYLine(newPt,rect.GetHeigth());
 }
 
+//2016.12.13 메소드 추가.
+void Display::DrawFillRect(Rect& rect , int fillColor /*= _COL_BACK_*/)
+{
+	CUtil::textcolor(fillColor);
+	for(int y = 0; y <rect.GetHeigth() ;y ++  )
+	{
+		for(int x = 0 ; x < rect.GetWidth(); x++)
+		{
+			CUtil::Gotoxy(rect.GetX()+x,rect.GetY() +y);
+			cout <<"A";
+		}
+	}
+	
+	//Display::DrawXLine(rect.GetStaPos(),rect.GetWidth());
+	//Point newPt = rect.GetStaPos() + Point(0,rect.GetHeigth()-1);
+	//Display::DrawXLine(newPt,rect.GetWidth());
+
+	//Display::DrawYLine(rect.GetStaPos(),rect.GetHeigth());
+	//newPt = rect.GetStaPos() + Point(rect.GetWidth()-1,0);
+	//Display::DrawYLine(newPt,rect.GetHeigth());
+}
+
 char Display::IsSaveMenu(int x,int y)
 {
 	//char buff[255] = {0};

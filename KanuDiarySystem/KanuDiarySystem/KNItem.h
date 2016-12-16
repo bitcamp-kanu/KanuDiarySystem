@@ -35,6 +35,8 @@ public :
 	void PrintLine();
 	void ModifyNode();
 	void GetDataAll(vector<string>& vec);
+	void AddLine(string str);
+	int  GetCount();
 };
 
 

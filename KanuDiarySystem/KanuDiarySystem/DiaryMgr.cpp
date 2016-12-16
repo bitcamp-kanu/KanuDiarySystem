@@ -83,6 +83,11 @@ bool DiaryMgr::CreateItemDisplay()
 	//제목 입력[제목 입력                                                             ]
 	//[1. 맑음][2. 흐림][3. 눈][4. 비] 
 	//[신규(C)][수정(U)][삭제(D)][취소(Esc) [저장]
+
+	//if(m_pCur->m_isbLoad == false)
+	//{
+	//	m_pCur->LoadTextEditer();
+	//}
 	
 	//cout << CUtil::GetCurTime("YYYYMMDD") <<" "<< CUtil::GetWeek() << "\t\t" << CUtil::GetCurTime("YYYYMMDDHHMMSS") << endl;
 	CUtil::Gotoxy(3,1);
@@ -93,7 +98,6 @@ bool DiaryMgr::CreateItemDisplay()
 	cout << "날  씨:["<< m_pCur->GetWeadtherCode();													CUtil::Gotoxy(50,3); cout << "]";
 	CUtil::Gotoxy(3,4);
 	cout << "기  분:["<< m_pCur->GetWeadtherCode();													CUtil::Gotoxy(50,4); cout << "]";
-
 
 	CUtil::Gotoxy(3,6);
 	cout << "데이터 입력(E) TEXT 편집(T) 저장 (S) 이전 (B)" ;
@@ -194,7 +198,7 @@ bool DiaryMgr::SaveData()
 	else
 	{
 		if(!m_pCur->m_isSave)
-		{
+		{ 
 			AddItem(m_pCur);
 			m_pCur->m_isSave = true;
 			m_pCur->MakeFile(); //데이터 생성과 동시에 파일을 생성 한다.
@@ -210,9 +214,11 @@ bool DiaryMgr::SaveData()
 }
 Diary* DiaryMgr::SetModifyItem(string key)
 {
+	m_pCur = NULL;
 	list<Diary*>::iterator iter;
 	for (iter = m_rgDiary.begin(); iter != m_rgDiary.end(); ++iter)
 	{
+		//if((*iter)->GetKey().substr(0,8) == key)
 		if((*iter)->GetKey() == key)
 		{
 			m_pCur = (*iter);
@@ -245,7 +251,7 @@ int DiaryMgr::DataChanged(Day* before, Day* data)
 {
 	m_pCalenderSelected = data;
 	DisplayCalender();
-	DisplayItemList();
+	//DisplayItemList();
 	return 0;
 }
 

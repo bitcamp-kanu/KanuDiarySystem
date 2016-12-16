@@ -164,6 +164,10 @@ int KNList :: DeleteNode(KNNode* pNode)
 // 총 노드 수를 반환한다.
 int KNList :: GetCount()
 {
+	if(m_pHead->next == m_pTail)
+	{
+		return 0;
+	}
 	// 카운트 노드 생성 : countNode
 	KNNode* countNode = m_pHead->next;
 

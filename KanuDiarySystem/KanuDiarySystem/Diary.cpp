@@ -8,6 +8,7 @@ using namespace std;
 
 Diary::Diary(void)
 {
+	m_isbLoad = false;
 	m_isSave = false;
 	//Data 를 초기화 한다.
 	memset(m_strKey			,0x00	,sizeof(m_strKey));
@@ -17,6 +18,8 @@ Diary::Diary(void)
 	memset(m_strFleeCode	,0x00	,sizeof(m_strFleeCode));
 	memset(m_strWeadtherCode,0x00	,sizeof(m_strWeadtherCode));
 	memset(m_strDiaryPath	,0x00	,sizeof(m_strDiaryPath));
+	memset(m_strWeek	,0x00		,sizeof(m_strWeek));
+	
 
 	string crateDate = CUtil::GetCurTime("YYYYMMDDHHMMSS");
 	string strDay = CUtil::GetCurTime("YYYYMMDD");
@@ -100,6 +103,10 @@ string Diary::GetDiaryPath()
 }
 string Diary::GetWeek()
 {
+	if(strlen(m_strWeek) == 0)
+	{
+		return "";
+	}
 	return string(m_strWeek);
 }
 void Diary::SetTitle(string str)
@@ -156,4 +163,20 @@ bool Diary::SaveTextContent() //Text Content 를 저장 한다.
 		file.WriteLine(vec[i]);
 	}
 	return vec.size();
+}
+
+bool Diary::LoadTextEditer()
+{
+	KNFile file;
+	file.Open(m_strDiaryPath,"w");
+	vector<string> vec;
+	m_oTextEdit.GetDataAll(vec);
+	while(!file.IsEOF())
+	{
+		string str;
+		file.ReadLine(str);
+		this->m_oTextEdit.AddLine(str);
+	}
+	m_isbLoad = true;
+	return true;
 }
